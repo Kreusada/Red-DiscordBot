@@ -63,7 +63,7 @@ msgstr "¡Hazte rico y diviértete con la moneda imaginaria!"
 #: redbot/cogs/economy/economy.py:170
 #, docstring
 msgid "Base command to manage the bank."
-msgstr ""
+msgstr "Comando base para administrar el banco."
 
 #: redbot/cogs/economy/economy.py:175
 #, docstring

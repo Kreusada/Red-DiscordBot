@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: red-discordbot\n"
-"POT-Creation-Date: 2020-12-24 12:36+0000\n"
+"POT-Creation-Date: 2021-01-21 12:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -43,236 +43,236 @@ msgstr ""
 msgid "Mention spam (Autowarn)"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:86
+#: redbot/cogs/mod/kickban.py:93
 msgid "That user is not in a voice channel."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:93
+#: redbot/cogs/mod/kickban.py:100
 msgid "I require the {perms} permission(s) in that user's channel to do that."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:103
+#: redbot/cogs/mod/kickban.py:110
 msgid "You must have the {perms} permission(s) in that user's channel to use this command."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:125 redbot/cogs/mod/kickban.py:414
-#: redbot/cogs/mod/kickban.py:569
+#: redbot/cogs/mod/kickban.py:132 redbot/cogs/mod/kickban.py:421
+#: redbot/cogs/mod/kickban.py:576
 msgid "Invalid days. Must be between 0 and 7."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:131 redbot/cogs/mod/kickban.py:545
+#: redbot/cogs/mod/kickban.py:138 redbot/cogs/mod/kickban.py:552
 msgid "I cannot let you do that. Self-harm is bad {}"
 msgstr "Nie mogę na to pozwolić. Samookaleczenie jest złe {}"
 
-#: redbot/cogs/mod/kickban.py:136 redbot/cogs/mod/kickban.py:283
-#: redbot/cogs/mod/kickban.py:550 redbot/cogs/mod/kickban.py:629
-#: redbot/cogs/mod/kickban.py:709
+#: redbot/cogs/mod/kickban.py:143 redbot/cogs/mod/kickban.py:290
+#: redbot/cogs/mod/kickban.py:557 redbot/cogs/mod/kickban.py:636
+#: redbot/cogs/mod/kickban.py:716
 msgid "I cannot let you do that. You are not higher than the user in the role hierarchy."
 msgstr "Nie mogę ci pozwolić by to zrobić. Nie jesteś wyższy niż użytkownik w hierarchii roli."
 
-#: redbot/cogs/mod/kickban.py:143 redbot/cogs/mod/kickban.py:291
-#: redbot/cogs/mod/kickban.py:558
+#: redbot/cogs/mod/kickban.py:150 redbot/cogs/mod/kickban.py:298
+#: redbot/cogs/mod/kickban.py:565
 msgid "I cannot do that due to Discord hierarchy rules."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:149
+#: redbot/cogs/mod/kickban.py:156
 msgid "You have been banned from {guild}."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:152 redbot/cogs/mod/kickban.py:301
+#: redbot/cogs/mod/kickban.py:159 redbot/cogs/mod/kickban.py:308
 msgid "**Reason**"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:153 redbot/cogs/mod/kickban.py:302
+#: redbot/cogs/mod/kickban.py:160 redbot/cogs/mod/kickban.py:309
 msgid "No reason was given."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:171 redbot/cogs/mod/kickban.py:430
+#: redbot/cogs/mod/kickban.py:178 redbot/cogs/mod/kickban.py:437
 msgid "User with ID {user_id} is already banned."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:184
+#: redbot/cogs/mod/kickban.py:191
 msgid "User with ID {user_id} was upgraded from a temporary to a permanent ban."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:196 redbot/cogs/mod/kickban.py:329
+#: redbot/cogs/mod/kickban.py:203 redbot/cogs/mod/kickban.py:336
 msgid "Done. That felt good."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:198 redbot/cogs/mod/kickban.py:310
+#: redbot/cogs/mod/kickban.py:205 redbot/cogs/mod/kickban.py:317
 msgid "I'm not allowed to do that."
 msgstr "Nie wolno mi tego zrobić."
 
-#: redbot/cogs/mod/kickban.py:200 redbot/cogs/mod/kickban.py:501
+#: redbot/cogs/mod/kickban.py:207 redbot/cogs/mod/kickban.py:508
 msgid "User with ID {user_id} not found"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:207
+#: redbot/cogs/mod/kickban.py:214
 msgid "An unexpected error occurred."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:242
+#: redbot/cogs/mod/kickban.py:249
 msgid "Tempban finished"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:266
+#: redbot/cogs/mod/kickban.py:273
 #, docstring
 msgid "Kick a user.\\n\\n        If a reason is specified, it will be the reason that shows up\\n        in the audit log.\\n        "
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:276 redbot/cogs/mod/kickban.py:622
+#: redbot/cogs/mod/kickban.py:283 redbot/cogs/mod/kickban.py:629
 msgid "I cannot let you do that. Self-harm is bad {emoji}"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:298
+#: redbot/cogs/mod/kickban.py:305
 msgid "You have been kicked from {guild}."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:343
+#: redbot/cogs/mod/kickban.py:350
 #, docstring
 msgid "Ban a user from this server and optionally delete days of messages.\\n\\n        A user ID should be provided if the user is not a member of this server.\\n\\n        If days is not a number, it's treated as the first word of the reason.\\n\\n        Minimum 0 days, maximum 7. If not specified, defaultdays setting will be used instead."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:374
+#: redbot/cogs/mod/kickban.py:381
 #, docstring
 msgid "Mass bans user(s) from the server.\\n\\n        User IDs need to be provided in order to ban\\n        using this command."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:383
+#: redbot/cogs/mod/kickban.py:390
 msgid "Banned {num} users from the server."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:387
+#: redbot/cogs/mod/kickban.py:394
 msgid "\\nErrors:\\n"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:390
+#: redbot/cogs/mod/kickban.py:397
 msgid "\\nFollowing user IDs have been upgraded from a temporary to a permanent ban:\\n"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:418
+#: redbot/cogs/mod/kickban.py:425
 msgid "I lack the permissions to do this."
 msgstr "Nie mam uprawnień aby to zrobić."
 
-#: redbot/cogs/mod/kickban.py:469 redbot/cogs/mod/kickban.py:473
+#: redbot/cogs/mod/kickban.py:476 redbot/cogs/mod/kickban.py:480
 msgid "Failed to ban user {user_id}: {reason}"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:506
+#: redbot/cogs/mod/kickban.py:513
 msgid "Could not ban user with ID {user_id}: missing permissions."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:539
+#: redbot/cogs/mod/kickban.py:546
 #, docstring
 msgid "Temporarily ban a user from this server."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:581
+#: redbot/cogs/mod/kickban.py:588
 msgid "You have been temporarily banned from {server_name} until {date}."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:585
+#: redbot/cogs/mod/kickban.py:592
 msgid " Here is an invite for when your ban expires: {invite_link}"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:595
+#: redbot/cogs/mod/kickban.py:602
 msgid "I can't do that for some reason."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:597
+#: redbot/cogs/mod/kickban.py:604
 msgid "Something went wrong while banning."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:609
+#: redbot/cogs/mod/kickban.py:616
 msgid "Done. Enough chaos for now."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:616
+#: redbot/cogs/mod/kickban.py:623
 #, docstring
 msgid "Kick a user and delete 1 day's worth of their messages."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:645
+#: redbot/cogs/mod/kickban.py:652
 msgid "You have been banned and then unbanned as a quick way to delete your messages.\\nYou can now join the server again. {invite_link}"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:656
+#: redbot/cogs/mod/kickban.py:663
 msgid "My role is not high enough to softban that user."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:692
+#: redbot/cogs/mod/kickban.py:699
 msgid "Done. Enough chaos."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:700
+#: redbot/cogs/mod/kickban.py:707
 #, docstring
 msgid "Kick a member from a voice channel."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:722
+#: redbot/cogs/mod/kickban.py:729
 msgid "I am unable to kick this member from the voice channel."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:725
+#: redbot/cogs/mod/kickban.py:732
 msgid "Something went wrong while attempting to kick that member."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:744
+#: redbot/cogs/mod/kickban.py:751
 #, docstring
 msgid "Unban a user from speaking and listening in the server's voice channels."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:763
+#: redbot/cogs/mod/kickban.py:770
 msgid "That user isn't muted or deafened by the server."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:779
+#: redbot/cogs/mod/kickban.py:786
 msgid "User is now allowed to speak and listen in voice channels."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:785
+#: redbot/cogs/mod/kickban.py:792
 #, docstring
 msgid "Ban a user from speaking and listening in the server's voice channels."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:806
+#: redbot/cogs/mod/kickban.py:813
 msgid "That user is already muted and deafened server-wide."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:820
+#: redbot/cogs/mod/kickban.py:827
 msgid "User has been banned from speaking or listening in voice channels."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:827
+#: redbot/cogs/mod/kickban.py:834
 #, docstring
 msgid "Unban a user from this server.\\n\\n        Requires specifying the target user's ID. To find this, you may either:\\n         1. Copy it from the mod log case (if one was created), or\\n         2. enable developer mode, go to Bans in this server's settings, right-\\n        click the user and select 'Copy ID'."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:840
+#: redbot/cogs/mod/kickban.py:847
 msgid "It seems that user isn't banned!"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:845
+#: redbot/cogs/mod/kickban.py:852
 msgid "Something went wrong while attempting to unban that user."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:859
+#: redbot/cogs/mod/kickban.py:866
 msgid "Unbanned that user from this server."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:865
+#: redbot/cogs/mod/kickban.py:872
 msgid "I don't share another server with this user. I can't reinvite them."
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:873
+#: redbot/cogs/mod/kickban.py:880
 msgid "You've been unbanned from {server}.\\nHere is an invite for that server: {invite_link}"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:880
+#: redbot/cogs/mod/kickban.py:887
 msgid "I failed to send an invite to that user. Perhaps you may be able to send it for me?\\nHere's the invite link: {invite_link}"
 msgstr ""
 
-#: redbot/cogs/mod/kickban.py:888
+#: redbot/cogs/mod/kickban.py:895
 msgid "Something went wrong when attempting to send that useran invite. Here's the link so you can try: {invite_link}"
 msgstr ""
 
