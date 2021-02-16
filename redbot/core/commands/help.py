@@ -348,7 +348,7 @@ class RedHelpFormatter(HelpFormatterABC):
                 emb["embed"]["title"] = f"*{description[:250]}*"
 
             emb["footer"]["text"] = tagline
-            emb["embed"]["description"] = box(signature)
+            emb["embed"]["description"] = box(signature, lang='yaml')
 
             command_help = command.format_help_for_context(ctx)
             if command_help:
