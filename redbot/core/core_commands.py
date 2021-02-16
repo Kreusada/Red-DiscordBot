@@ -438,7 +438,7 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
             embed.add_field(name="Python", value=python_version)
             embed.add_field(name="discord.py", value=dpy_version)
             embed.add_field(name=_("Red version"), value=red_version)
-            embed.set_image(url="https://cdn.discordapp.com/attachments/769165401879478302/811338510702477322/WALLE-Poster.gif")
+            embed.set_image(url="https://cdn.discordapp.com/attachments/758775890954944572/811342694835159120/1_nKTP2-zzgkSP1n3QYvsbpw.jpeg")
             if outdated in (True, None):
                 if outdated is True:
                     outdated_value = _("Yes, {version} is available.").format(
