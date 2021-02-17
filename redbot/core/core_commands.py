@@ -1174,7 +1174,7 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
             title=f"Thanks for using {ctx.bot.user.name}!",
             description=(
                 "Click [here]({}) to invite.\n"
-                "Join our support server [here]({})"
+                "Join our support server [here]({})."
             ).format(await self._invite_url(), self.support_server_url),
             color=await ctx.embed_colour()
         )
