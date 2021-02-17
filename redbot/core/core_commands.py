@@ -1179,6 +1179,7 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
             color=await ctx.embed_colour()
         )
         embed.set_image(url=self.embed_image)
+        await ctx.send(embed=embed)
 
     @commands.group()
     @checks.is_owner()
