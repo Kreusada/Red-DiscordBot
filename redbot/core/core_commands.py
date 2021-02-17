@@ -106,6 +106,8 @@ class CoreLogic:
         self.bot.register_rpc_handler(self._prefixes)
         self.bot.register_rpc_handler(self._version_info)
         self.bot.register_rpc_handler(self._invite_url)
+        self.support_server_url = "https://discord.gg/JmCFyq7"
+        self.embed_image = "https://cdn.discordapp.com/attachments/758775890954944572/811342694835159120/1_nKTP2-zzgkSP1n3QYvsbpw.jpeg"
 
     async def _load(
         self, pkg_names: Iterable[str]
@@ -438,7 +440,7 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
             embed.add_field(name="Python", value=python_version)
             embed.add_field(name="discord.py", value=dpy_version)
             embed.add_field(name=_("Red version"), value=red_version)
-            embed.set_image(url="https://cdn.discordapp.com/attachments/758775890954944572/811342694835159120/1_nKTP2-zzgkSP1n3QYvsbpw.jpeg")
+            embed.set_image(url=self.embed_image)
             if outdated in (True, None):
                 if outdated is True:
                     outdated_value = _("Yes, {version} is available.").format(
@@ -1168,13 +1170,15 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
     @commands.check(CoreLogic._can_get_invite_url)
     async def invite(self, ctx):
         """Shows [botname]'s invite url."""
-        try:
-            await ctx.author.send(await self._invite_url())
-        except discord.errors.Forbidden:
-            await ctx.send(
-                "I couldn't send the invite message to you in DM. "
-                "Either you blocked me or you disabled DMs in this server."
-            )
+        embed = discord.Embed(
+            title=f"Thanks for using {ctx.bot.user.name}!",
+            description=(
+                "Click [here]({}) to invite.".format(await self._invite_url())
+                "Join our support server [here]({})".format(self.support_server_url)
+            ),
+            color=await ctx.embed_colour()
+        )
+        embed.set_image(url=self.embed_image)
 
     @commands.group()
     @checks.is_owner()

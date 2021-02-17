@@ -368,7 +368,7 @@ class RedHelpFormatter(HelpFormatterABC):
                     return a_line[:67] + "..."
 
                 subtext = "\n".join(
-                    shorten_line(f"`{name}`: {command.format_shortdoc_for_context(ctx)}")
+                    shorten_line(f"`{ctx.clean_prefix}{name}`: {command.format_shortdoc_for_context(ctx)}")
                     for name, command in sorted(subcommands.items())
                 )
                 for i, page in enumerate(pagify(subtext, page_length=500, shorten_by=0)):
