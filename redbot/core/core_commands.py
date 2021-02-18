@@ -106,6 +106,7 @@ class CoreLogic:
         self.bot.register_rpc_handler(self._prefixes)
         self.bot.register_rpc_handler(self._version_info)
         self.bot.register_rpc_handler(self._invite_url)
+        self.walle = "<:walle:800005866635132938>"
         self.support_server_url = "https://discord.gg/JmCFyq7"
         self.embed_image = "https://cdn.discordapp.com/attachments/758775890954944572/811342694835159120/1_nKTP2-zzgkSP1n3QYvsbpw.jpeg"
 
@@ -1543,11 +1544,9 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
     @checks.is_owner()
     async def _shutdown(self, ctx: commands.Context, silently: bool = False):
         """Shuts down the bot."""
-        wave = "\N{WAVING HAND SIGN}"
-        skin = "\N{EMOJI MODIFIER FITZPATRICK TYPE-3}"
         with contextlib.suppress(discord.HTTPException):
             if not silently:
-                await ctx.send(_("Shutting down... ") + wave + skin)
+                await ctx.send(f"See you soon {ctx.author.name}! {self.walle}")
         await ctx.bot.shutdown()
 
     @commands.command(name="restart")
@@ -1560,7 +1559,7 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         with by the process manager in use."""
         with contextlib.suppress(discord.HTTPException):
             if not silently:
-                await ctx.send(_("Restarting..."))
+                await ctx.send(f"See you soon {ctx.author.name}. {self.walle}")
         await ctx.bot.shutdown(restart=True)
 
     @commands.group(name="set")

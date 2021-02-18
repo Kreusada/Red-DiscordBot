@@ -197,8 +197,10 @@ class Dev(commands.Cog):
         try:
             with redirect_stdout(stdout):
                 result = await func()
+                await ctx.message.add_reaction("❌")
         except:
             printed = "{}{}".format(stdout.getvalue(), traceback.format_exc())
+            await ctx.message.add_reaction("❌")
         else:
             printed = stdout.getvalue()
             await ctx.tick()
