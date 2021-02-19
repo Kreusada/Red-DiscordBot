@@ -78,9 +78,9 @@ class Dev(commands.Cog):
         Returns a string representation of the error formatted as a codeblock.
         """
         if e.text is None:
-            return box("{0.__class__.__name__}: {0}".format(e), lang="py")
+            return box("{0.__class__.__name__}: {0}".format(e), lang="apache")
         return box(
-            "{0.text}\n{1:>{0.offset}}\n{2}: {0}".format(e, "^", type(e).__name__), lang="py"
+            "{0.text}\n{1:>{0.offset}}\n{2}: {0}".format(e, "^", type(e).__name__), lang="apache"
         )
 
     @staticmethod
@@ -150,13 +150,13 @@ class Dev(commands.Cog):
             await ctx.send(self.get_syntax_error(e))
             return
         except Exception as e:
-            await ctx.send(box("{}: {!s}".format(type(e).__name__, e), lang="py"))
+            await ctx.send(box("{}: {!s}".format(type(e).__name__, e), lang="apache"))
             return
 
         self._last_result = result
         result = self.sanitize_output(ctx, str(result))
 
-        await ctx.send_interactive(self.get_pages(result), box_lang="py")
+        await ctx.send_interactive(self.get_pages(result), box_lang="apache")
 
     @commands.command(name="eval")
     @checks.is_owner()
@@ -197,7 +197,6 @@ class Dev(commands.Cog):
         try:
             with redirect_stdout(stdout):
                 result = await func()
-                await ctx.message.add_reaction("❌")
         except:
             printed = "{}{}".format(stdout.getvalue(), traceback.format_exc())
             await ctx.message.add_reaction("❌")
@@ -212,7 +211,7 @@ class Dev(commands.Cog):
             msg = printed
         msg = self.sanitize_output(ctx, msg)
 
-        await ctx.send_interactive(self.get_pages(msg), box_lang="py")
+        await ctx.send_interactive(self.get_pages(msg), box_lang="apache")
 
     @commands.group(invoke_without_command=True)
     @checks.is_owner()
@@ -302,7 +301,7 @@ class Dev(commands.Cog):
             msg = self.sanitize_output(ctx, msg)
 
             try:
-                await ctx.send_interactive(self.get_pages(msg), box_lang="py")
+                await ctx.send_interactive(self.get_pages(msg), box_lang="apache")
             except discord.Forbidden:
                 pass
             except discord.HTTPException as e:
