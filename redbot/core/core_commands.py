@@ -2828,7 +2828,7 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         else:
             msg = _("User on the allowlist:")
         for user in curr_list:
-            msg += "\n\t- {}".format(user)
+            msg += "\n\t- {} ({})".format(self.bot.get_user(user), user)
 
         for page in pagify(msg):
             await ctx.send(box(page))
@@ -2897,7 +2897,7 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         else:
             msg = _("User on the blocklist:")
         for user in curr_list:
-            msg += "\n\t- {}".format(user)
+            msg += "\n\t- {} ({})".format(self.bot.get_user(user), user)
 
         for page in pagify(msg):
             await ctx.send(box(page))
@@ -2974,7 +2974,7 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         else:
             msg = _("Allowed user or role:")
         for obj in curr_list:
-            msg += "\n\t- {}".format(obj)
+            msg += "\n\t- {} ({})".format(self.bot.get_user(obj), obj)
 
         for page in pagify(msg):
             await ctx.send(box(page))
@@ -3065,7 +3065,7 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         else:
             msg = _("Blocked user or role:")
         for obj in curr_list:
-            msg += "\n\t- {}".format(obj)
+            msg += "\n\t- {} ({})".format(self.bot.get_user(obj), obj)
 
         for page in pagify(msg):
             await ctx.send(box(page))
