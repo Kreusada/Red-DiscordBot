@@ -2828,10 +2828,13 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         else:
             msg = _("User on the allowlist:")
         for user in curr_list:
-            msg += "\n\t- {} ({})".format(self.bot.get_user(user), user)
+            get_user = self.bot.get_user(user)
+            if not get_user:
+                get_user = _("Unknown or Deleted User")
+            msg += "\n\t- [{}] ({})".format(get_user, user)
 
         for page in pagify(msg):
-            await ctx.send(box(page))
+            await ctx.send(box(page, lang='css'))
 
     @allowlist.command(name="remove", require_var_positional=True)
     async def allowlist_remove(self, ctx: commands.Context, *users: Union[discord.Member, int]):
@@ -2897,10 +2900,13 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         else:
             msg = _("User on the blocklist:")
         for user in curr_list:
-            msg += "\n\t- {} ({})".format(self.bot.get_user(user), user)
+            get_user = self.bot.get_user(user)
+            if not get_user:
+                get_user = _("Unknown or Deleted User")
+            msg += "\n\t- [{}] ({})".format(get_user, user)
 
         for page in pagify(msg):
-            await ctx.send(box(page))
+            await ctx.send(box(page, lang='css'))
 
     @blocklist.command(name="remove", require_var_positional=True)
     async def blocklist_remove(self, ctx: commands.Context, *users: Union[discord.Member, int]):
@@ -2974,10 +2980,13 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         else:
             msg = _("Allowed user or role:")
         for obj in curr_list:
-            msg += "\n\t- {} ({})".format(self.bot.get_user(obj), obj)
+            get_user = self.bot.get_user(obj)
+            if not get_user:
+                get_user = _("Unknown or Deleted User")
+            msg += "\n\t- [{}] ({})".format(get_user, obj)
 
         for page in pagify(msg):
-            await ctx.send(box(page))
+            await ctx.send(box(page, lang='css'))
 
     @localallowlist.command(name="remove", require_var_positional=True)
     async def localallowlist_remove(
@@ -3065,10 +3074,13 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         else:
             msg = _("Blocked user or role:")
         for obj in curr_list:
-            msg += "\n\t- {} ({})".format(self.bot.get_user(obj), obj)
+            get_user = self.bot.get_user(obj)
+            if not get_user:
+                get_user = _("Unknown or Deleted User")
+            msg += "\n\t- [{}] ({})".format(get_user, obj)
 
         for page in pagify(msg):
-            await ctx.send(box(page))
+            await ctx.send(box(page, lang='css'))
 
     @localblocklist.command(name="remove", require_var_positional=True)
     async def localblocklist_remove(
