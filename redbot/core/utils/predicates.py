@@ -875,7 +875,7 @@ class ReactionPredicate(Callable[[discord.Reaction, discord.abc.User], bool]):
 
     YES_OR_NO_EMOJIS: ClassVar[Tuple[str, str]] = (
         "\N{WHITE HEAVY CHECK MARK}",
-        "\N{NEGATIVE SQUARED CROSS MARK}",
+        "<:redcross:815174041597509632>",
     )
     """Tuple[str, str] : A tuple containing the tick emoji and cross emoji, in that order."""
 
