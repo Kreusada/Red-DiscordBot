@@ -87,7 +87,7 @@ class Image(commands.Cog):
                 _("Something went wrong. Error code is {code}.").format(code=data["status"])
             )
 
-    @_imgur.command(name="subreddit")
+    @_imgur.command(name="subreddit")#
     async def imgur_subreddit(
         self,
         ctx,
