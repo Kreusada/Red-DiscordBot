@@ -236,7 +236,7 @@ class Reports(commands.Cog):
         )
         return ticket_number
 
-    @commands.group(name="report", invoke_without_command=True)
+    @commands.group(name="report", usage="<text>", invoke_without_command=True)
     async def report(self, ctx: commands.Context, *, _report: str = ""):
         """Send a report.
 
@@ -253,7 +253,7 @@ class Reports(commands.Cog):
             return
         g_active = await self.config.guild(guild).active()
         if not g_active:
-            return await author.send(_("Reporting has not been enabled for this server"))
+            return await author.send(_("Reporting has not been enabled for this server."))
         if guild.id not in self.antispam:
             self.antispam[guild.id] = {}
         if author.id not in self.antispam[guild.id]:
@@ -285,7 +285,7 @@ class Reports(commands.Cog):
                 await author.send(
                     _(
                         "Please respond to this message with your Report."
-                        "\nYour report should be a single message"
+                        "\nYour report should be a single message."
                     )
                 )
             except discord.Forbidden:
