@@ -83,9 +83,13 @@ parameters.
 
 .. note::
     Arguments enclosed in ``< >`` are **required** for the command to work.
+    Additionally, if the argument contains an ellipsis (``<arguments...>``), 
+    it means that you can provide multiple arguments.
 
     Arguments enclosed in ``[ ]`` are **optional** for the command;
-    you can decide whether to use them or not.
+    you can decide whether to use them or not. Furthermore, if the argument
+    contains an ellipsis (``[arguments...]``), it means that you can choose to
+    provide multiple arguments, if any.
     
     If your argument includes spaces like ``Hello world!``, most of the time
     you will need to place it in double quotes like this: ``"Hello world!"``.
