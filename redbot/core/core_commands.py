@@ -2083,11 +2083,11 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         """Sets [botname]'s server prefix(es)."""
         if not prefixes:
             await ctx.bot.set_prefixes(guild=ctx.guild, prefixes=[])
-            await ctx.send(_("Guild prefixes have been reset."))
+            await ctx.send(_("Server prefixes have been reset."))
             return
         prefixes = sorted(prefixes, reverse=True)
         await ctx.bot.set_prefixes(guild=ctx.guild, prefixes=prefixes)
-        await ctx.send(_("Prefix set."))
+        await ctx.send(_("Server prefix set."))
 
     @_set.command()
     @checks.is_owner()
