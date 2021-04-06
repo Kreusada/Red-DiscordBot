@@ -47,7 +47,7 @@ __all__ = [
 
 _ = Translator("commands.converter", __file__)
 
-ID_REGEX = re.compile(r"([0-9]{15,21})")
+ID_REGEX = re.compile(r"([0-9]{15,20})")
 
 
 # Taken with permission from
@@ -134,24 +134,33 @@ def parse_timedelta(
     return None
 
 
-class GuildConverter(discord.Guild):
+class _GuildConverter(discord.Guild):
     """Converts to a `discord.Guild` object.
 
     The lookup strategy is as follows (in order):
 
     1. Lookup by ID.
     2. Lookup by name.
+
+    .. deprecated-removed:: 3.4.8 60
+        ``GuildConverter`` is now only provided within ``redbot.core.commands`` namespace.
     """
 
     @classmethod
     async def convert(cls, ctx: "Context", argument: str) -> discord.Guild:
         match = ID_REGEX.fullmatch(argument)
+        return await dpy_commands.GuildConverter().convert(ctx, argument)
 
-        if match is None:
-            ret = discord.utils.get(ctx.bot.guilds, name=argument)
-        else:
-            guild_id = int(match.group(1))
-            ret = ctx.bot.get_guild(guild_id)
+
+_GuildConverter.__name__ = "GuildConverter"
+
+
+def __getattr__(name: str, *, stacklevel: int = 2) -> Any:
+    # Let me just say it one more time... This is awesome! (PEP-562)
+    if name == "GuildConverter":
+        # let's not waste time on importing this when we don't need it
+        # (and let's not put in the public API)
+        from redbot.core.utils._internal_utils import deprecated_removed
 
         if ret is None:
             raise BadArgument(_('Server "{name}" not found.').format(name=argument))

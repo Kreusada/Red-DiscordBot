@@ -1642,7 +1642,7 @@ class RedBase(
 
     async def logout(self):
         """Logs out of Discord and closes all connections."""
-        await super().logout()
+        await super().close()
         await drivers.get_driver_class().teardown()
         try:
             if self.rpc_enabled:
@@ -1667,7 +1667,7 @@ class RedBase(
         else:
             self._shutdown_mode = ExitCodes.RESTART
 
-        await self.logout()
+        await self.close()
         sys.exit(self._shutdown_mode)
 
     async def _core_data_deletion(
