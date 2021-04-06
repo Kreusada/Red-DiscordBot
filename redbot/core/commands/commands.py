@@ -1,4 +1,5 @@
 """Module for command helpers and classes.
+
 This module contains extended classes and functions which are intended to
 be used instead of those from the `discord.ext.commands` module.
 """
@@ -102,18 +103,24 @@ class CogCommandMixin:
     def format_text_for_context(self, ctx: "Context", text: str) -> str:
         """
         This formats text based on values in context
+
         The steps are (currently, roughly) the following:
+
             - substitute ``[p]`` with ``ctx.clean_prefix``
             - substitute ``[botname]`` with ``ctx.me.display_name``
+
         More steps may be added at a later time.
+
         Cog creators should only override this if they want
         help text to be modified, and may also want to
         look at `format_help_for_context` and (for commands only)
         ``format_shortdoc_for_context``
+
         Parameters
         ----------
         ctx: Context
         text: str
+
         Returns
         -------
         str
@@ -135,16 +142,22 @@ class CogCommandMixin:
     def format_help_for_context(self, ctx: "Context") -> str:
         """
         This formats the help string based on values in context
+
         The steps are (currently, roughly) the following:
+
             - get the localized help
             - substitute ``[p]`` with ``ctx.clean_prefix``
             - substitute ``[botname]`` with ``ctx.me.display_name``
+
         More steps may be added at a later time.
+
         Cog creators may override this in their own command classes
         as long as the method signature stays the same.
+
         Parameters
         ----------
         ctx: Context
+
         Returns
         -------
         str
@@ -160,6 +173,7 @@ class CogCommandMixin:
 
     def allow_for(self, model_id: Union[int, str], guild_id: int) -> None:
         """Actively allow this command for the given model.
+
         Parameters
         ----------
         model_id : Union[int, str]
@@ -168,11 +182,13 @@ class CogCommandMixin:
         guild_id : int
             The guild ID to allow this cog or command in. For global
             rules, use ``0``.
+
         """
         self.requires.set_rule(model_id, PermState.ACTIVE_ALLOW, guild_id=guild_id)
 
     def deny_to(self, model_id: Union[int, str], guild_id: int) -> None:
         """Actively deny this command to the given model.
+
         Parameters
         ----------
         model_id : Union[int, str]
@@ -181,6 +197,7 @@ class CogCommandMixin:
         guild_id : int
             The guild ID to deny this cog or command in. For global
             rules, use ``0``.
+
         """
         cur_rule = self.requires.get_rule(model_id, guild_id=guild_id)
         if cur_rule is PermState.PASSIVE_ALLOW:
@@ -192,6 +209,7 @@ class CogCommandMixin:
         self, model_id: Union[int, str], guild_id: int
     ) -> Tuple[PermState, PermState]:
         """Clear the rule which is currently set for this model.
+
         Parameters
         ----------
         model_id : Union[int, str]
@@ -199,6 +217,7 @@ class CogCommandMixin:
             for "default".
         guild_id : int
             The guild ID. For global rules, use ``0``.
+
         """
         cur_rule = self.requires.get_rule(model_id, guild_id=guild_id)
         if cur_rule is PermState.ACTIVE_ALLOW:
@@ -214,6 +233,7 @@ class CogCommandMixin:
 
     def set_default_rule(self, rule: Optional[bool], guild_id: int) -> None:
         """Set the default rule for this cog or command.
+
         Parameters
         ----------
         rule : Optional[bool]
@@ -222,6 +242,7 @@ class CogCommandMixin:
         guild_id : int
             The guild to set the default rule in. When ``0``, this will
             set the global default rule.
+
         """
         if rule is None:
             self.clear_rule_for(Requires.DEFAULT, guild_id=guild_id)
@@ -233,18 +254,24 @@ class CogCommandMixin:
 
 class Command(CogCommandMixin, DPYCommand):
     """Command class for Red.
+
     This should not be created directly, and instead via the decorator.
+
     This class inherits from `discord.ext.commands.Command`. The
     attributes listed below are simply additions to the ones listed
     with that class.
+
     .. warning::
+
         If you subclass this command, attributes and methods
         must remain compatible.
+
         None of your methods should start with ``red_`` or
         be dunder names which start with red (eg. ``__red_test_thing__``)
         unless to override behavior in a method designed to be overridden,
         as this prefix is reserved for future methods in order to be
         able to add features non-breakingly.
+
     Attributes
     ----------
     checks : List[`coroutine function`]
@@ -298,7 +325,9 @@ class Command(CogCommandMixin, DPYCommand):
     def callback(self, function):
         """
         Below should be mostly the same as discord.py
+
         Currently, we modify behavior for
+
           - functools.partial support
           - typing.Optional behavior change as an option
         """
@@ -352,6 +381,7 @@ class Command(CogCommandMixin, DPYCommand):
     @property
     def help(self):
         """Help string for this command.
+
         If the :code:`help` kwarg was passed into the decorator, it will
         default to that. If not, it will attempt to translate the docstring
         of the command's callback function.
@@ -375,6 +405,7 @@ class Command(CogCommandMixin, DPYCommand):
     @property
     def parents(self) -> List["Group"]:
         """List[commands.Group] : Returns all parent commands of this command.
+
         This is sorted by the length of :attr:`.qualified_name` from highest to lowest.
         If the command has no parents, this will be an empty list.
         """
@@ -394,9 +425,11 @@ class Command(CogCommandMixin, DPYCommand):
         change_permission_state: bool = False,
     ) -> bool:
         """Check if this command can be run in the given context.
+
         This function first checks if the command can be run using
         discord.py's method `discord.ext.commands.Command.can_run`,
         then will return the result of `Requires.verify`.
+
         Keyword Arguments
         -----------------
         check_all_parents : bool
@@ -473,14 +506,17 @@ class Command(CogCommandMixin, DPYCommand):
         self, ctx: "Context", converter, argument: str, param: inspect.Parameter
     ):
         """Convert an argument according to its type annotation.
+
         Raises
         ------
         ConversionFailure
             If doing the conversion failed.
+
         Returns
         -------
         Any
             The converted argument.
+
         """
         # Let's not worry about all of this junk if it's just a str converter
         if converter is str:
@@ -501,16 +537,20 @@ class Command(CogCommandMixin, DPYCommand):
 
     async def can_see(self, ctx: "Context"):
         """Check if this command is visible in the given context.
+
         In short, this will verify whether the user can run the
         command, and also whether the command is hidden or not.
+
         Parameters
         ----------
         ctx : `Context`
             The invocation context to check with.
+
         Returns
         -------
         bool
             ``True`` if this command is visible in the given context.
+
         """
         for cmd in (self, *self.parents):
             if cmd.hidden:
@@ -529,14 +569,17 @@ class Command(CogCommandMixin, DPYCommand):
 
     def disable_in(self, guild: discord.Guild) -> bool:
         """Disable this command in the given guild.
+
         Parameters
         ----------
         guild : discord.Guild
             The guild to disable the command in.
+
         Returns
         -------
         bool
             ``True`` if the command wasn't already disabled.
+
         """
         disabler = get_command_disabler(guild)
         if disabler in self.checks:
@@ -547,14 +590,17 @@ class Command(CogCommandMixin, DPYCommand):
 
     def enable_in(self, guild: discord.Guild) -> bool:
         """Enable this command in the given guild.
+
         Parameters
         ----------
         guild : discord.Guild
             The guild to enable the command in.
+
         Returns
         -------
         bool
             ``True`` if the command wasn't already enabled.
+
         """
         disabler = get_command_disabler(guild)
         try:
@@ -593,28 +639,39 @@ class Command(CogCommandMixin, DPYCommand):
     def error(self, coro):
         """
         A decorator that registers a coroutine as a local error handler.
+
         A local error handler is an :func:`.on_command_error` event limited to
         a single command.
+
         The on_command_error event is still dispatched
         for commands with a dedicated error handler.
+
         Red's global error handler will ignore commands with a registered error handler.
+
         To have red handle specific errors with the default behavior,
         call ``Red.on_command_error`` with ``unhandled_by_cog`` set to True.
+
         Due to how discord.py wraps exceptions, the exception you are expecting here
         is likely in ``error.original`` despite that the normal event handler for bot
         wide command error handling has no such wrapping.
+
         For example:
+
             .. code-block:: python
+
                 @a_command.error
                 async def a_command_error_handler(self, ctx, error):
+
                     if isinstance(error.original, MyErrorType):
                         self.log_exception(error.original)
                     else:
                         await ctx.bot.on_command_error(ctx, error.original, unhandled_by_cog=True)
+
         Parameters
         -----------
         coro : :term:`coroutine function`
             The coroutine to register as the local error handler.
+
         Raises
         -------
         discord.ClientException
@@ -626,12 +683,16 @@ class Command(CogCommandMixin, DPYCommand):
         """
         This formats the short version of the help
         string based on values in context
+
         See ``format_text_for_context`` for the actual implementation details
+
         Cog creators may override this in their own command and cog classes
         as long as the method signature stays the same.
+
         Parameters
         ----------
         ctx: Context
+
         Returns
         -------
         str
@@ -643,6 +704,7 @@ class Command(CogCommandMixin, DPYCommand):
 
 class GroupMixin(discord.ext.commands.GroupMixin):
     """Mixin for `Group` and `Red` classes.
+
     This class inherits from :class:`discord.ext.commands.GroupMixin`.
     """
 
@@ -680,7 +742,9 @@ class CogGroupMixin:
         self, model_id: Union[str, int], guild_id: int = 0
     ) -> Tuple[PermState, bool]:
         """Re-evaluate a rule by checking subcommand rules.
+
         This is called when a subcommand is no longer actively allowed.
+
         Parameters
         ----------
         model_id : Union[int, str]
@@ -688,12 +752,14 @@ class CogGroupMixin:
             for "default".
         guild_id : int
             The guild ID. For global rules, use ``0``.
+
         Returns
         -------
         Tuple[PermState, bool]
             A 2-tuple containing the new rule and a bool indicating
             whether or not the rule was changed as a result of this
             call.
+
         :meta private:
         """
         cur_rule = self.requires.get_rule(model_id, guild_id=guild_id)
@@ -722,6 +788,7 @@ class CogGroupMixin:
 
 class Group(GroupMixin, Command, CogGroupMixin, DPYGroup):
     """Group command class for Red.
+
     This class inherits from `Command`, with :class:`GroupMixin` and
     `discord.ext.commands.Group` mixed in.
     """
@@ -777,36 +844,49 @@ class CogMixin(CogGroupMixin, CogCommandMixin):
 
     async def red_get_data_for_user(self, *, user_id: int) -> MutableMapping[str, io.BytesIO]:
         """
+
         .. note::
+
             This method is documented provisionally
             and may have minor changes made to it.
             It is not expected to undergo major changes,
             but nothing utilizes this method yet and the inclusion of this method
             in documentation in advance is solely to allow cog creators time to prepare.
+
+
         This should be overridden by all cogs.
+
         Overridden implementations should return a mapping of filenames to io.BytesIO
         containing a human-readable version of the data
         the cog has about the specified user_id or an empty mapping
         if the cog does not have end user data.
+
         The data should be easily understood for what it represents to
         most users of age to use Discord.
+
         You may want to include a readme file
         which explains specifics about the data.
+
         This method may also be implemented for an extension.
+
         Parameters
         ----------
         user_id: int
+
         Returns
         -------
         MutableMapping[str, io.BytesIO]
             A mapping of filenames to BytesIO objects
             suitable to send as a files or as part of an archive to a user.
+
             This may be empty if you don't have data for users.
+
         Raises
         ------
         RedUnhandledAPI
             If the method was not overridden,
             or an overridden implementation is not handling this
+
         """
         raise RedUnhandledAPI()
 
@@ -818,8 +898,10 @@ class CogMixin(CogGroupMixin, CogCommandMixin):
     ):
         """
         This should be overridden by all cogs.
+
         If your cog does not store data, overriding and doing nothing should still
         be done to indicate that this has been considered.
+
         .. note::
                 This may receive other strings in the future without warning
                 you should safely handle
@@ -827,15 +909,22 @@ class CogMixin(CogGroupMixin, CogCommandMixin):
                 as additional requester types may be added
                 in the future without prior warning.
                 (see what this method can raise for details)
+
+
         This method can currently be passed one of these strings:
+
+
             - ``"discord_deleted_user"``:
+
                 The request should be processed as if
                 Discord has asked for the data removal
                 This then additionally must treat the
                 user ID itself as something to be deleted.
                 The user ID is no longer operational data
                 as the ID no longer refers to a valid user.
+
             - ``"owner"``:
+
                 The request was made by the bot owner.
                 If removing the data requested by the owner
                 would be an operational hazard
@@ -844,7 +933,9 @@ class CogMixin(CogGroupMixin, CogCommandMixin):
                 to remove that ID to ensure the process can not be abused
                 by users to bypass anti-abuse measures,
                 but there must remain a way for them to process this request.
+
             - ``"user_strict"``:
+
                 The request was made by a user,
                 the bot settings allow a user to request their own data
                 be deleted, and the bot is configured to respect this
@@ -853,7 +944,9 @@ class CogMixin(CogGroupMixin, CogCommandMixin):
                 such as IDs and timestamps of interactions,
                 but should not keep EUD such
                 as user nicknames if receiving a request of this nature.
+
             - ``"user"``:
+
                 The request was made by a user,
                 the bot settings allow a user to request their own data
                 be deleted, and the bot is configured to let cogs keep
@@ -862,12 +955,15 @@ class CogMixin(CogGroupMixin, CogCommandMixin):
                 essential to the functionality of the cog. This case will
                 only happen if the bot owner has opted into keeping
                 minimal EUD needed for cog functionality.
+
+
         Parameters
         ----------
         requester: Literal["discord_deleted_user", "owner", "user", "user_strict"]
             See above notes for details about this parameter
         user_id: int
             The user ID which needs deletion handling
+
         Raises
         ------
         RedUnhandledAPI
@@ -880,16 +976,20 @@ class CogMixin(CogGroupMixin, CogCommandMixin):
         """
         This really just exists to allow easy use with other methods using can_run
         on commands and groups such as help formatters.
+
         kwargs used in that won't apply here as they don't make sense to,
         but will be swallowed silently for a compatible signature for ease of use.
+
         Parameters
         ----------
         ctx : `Context`
             The invocation context to check with.
+
         Returns
         -------
         bool
             ``True`` if this cog is usable in the given context.
+
         :meta private:
         """
 
@@ -902,18 +1002,23 @@ class CogMixin(CogGroupMixin, CogCommandMixin):
 
     async def can_see(self, ctx: "Context") -> bool:
         """Check if this cog is visible in the given context.
+
         In short, this will verify whether
         the user is allowed to access the cog by permissions.
+
         This has an identical signature to the one used by commands, and groups,
         but needs a different underlying mechanism.
+
         Parameters
         ----------
         ctx : `Context`
             The invocation context to check with.
+
         Returns
         -------
         bool
             ``True`` if this cog is visible in the given context.
+
         :meta private:
         """
 
@@ -923,15 +1028,20 @@ class CogMixin(CogGroupMixin, CogCommandMixin):
 class Cog(CogMixin, DPYCog, metaclass=DPYCogMeta):
     """
     Red's Cog base class
+
     This includes a metaclass from discord.py
+
     .. warning::
+
         None of your methods should start with ``red_`` or
         be dunder names which start with red (eg. ``__red_test_thing__``)
         unless to override behavior in a method designed to be overridden,
         as this prefix is reserved for future methods in order to be
         able to add features non-breakingly.
+
         Attributes and methods must remain compatible
         with discord.py and with any of red's methods and attributes.
+
     """
 
     __cog_commands__: Tuple[Command]
@@ -941,6 +1051,7 @@ class Cog(CogMixin, DPYCog, metaclass=DPYCogMeta):
         """
         This does not have identical behavior to
         Group.all_commands but should return what you expect
+
         :meta private:
         """
         return {cmd.name: cmd for cmd in self.__cog_commands__}
@@ -948,6 +1059,7 @@ class Cog(CogMixin, DPYCog, metaclass=DPYCogMeta):
 
 def command(name=None, cls=Command, **attrs):
     """A decorator which transforms an async function into a `Command`.
+
     Same interface as `discord.ext.commands.command`.
     """
     attrs["help_override"] = attrs.pop("help", None)
@@ -957,6 +1069,7 @@ def command(name=None, cls=Command, **attrs):
 
 def group(name=None, cls=Group, **attrs):
     """A decorator which transforms an async function into a `Group`.
+
     Same interface as `discord.ext.commands.group`.
     """
     return dpy_command_deco(name, cls, **attrs)
@@ -967,6 +1080,7 @@ __command_disablers: DisablerDictType = weakref.WeakValueDictionary()
 
 def get_command_disabler(guild: discord.Guild) -> Callable[["Context"], Awaitable[bool]]:
     """Get the command disabler for a guild.
+
     A command disabler is a simple check predicate which returns
     ``False`` if the context is within the given guild.
     """
@@ -989,10 +1103,13 @@ class _AlwaysAvailableMixin:
     """
     This should be used for commands
     which should not be disabled or removed
+
     These commands cannot belong to any cog except Core (core_commands.py)
     to prevent issues with the appearance of certain behavior.
+
     These commands do not respect most forms of checks, and
     should only be used with that in mind.
+
     This particular class is not supported for 3rd party use
     """
 
@@ -1009,6 +1126,7 @@ class _RuleDropper(CogCommandMixin):
     or by global checks which are not tailored for these objects but instead
     on global abuse prevention
     (such as a check that disallows blocked users and bots from interacting.)
+
     This should not be used by 3rd-party extensions directly for their own objects.
     """
 
