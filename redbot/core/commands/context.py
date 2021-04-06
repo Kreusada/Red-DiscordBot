@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ..bot import Red
 
 TICK = "\N{WHITE HEAVY CHECK MARK}"
+CROSS = "\N{CROSS MARK}"
 
 __all__ = ["Context", "GuildContext", "DMContext"]
 
@@ -118,7 +119,7 @@ class Context(DPYContext):
     async def react_quietly(
         self, reaction: Union[discord.Emoji, discord.Reaction, discord.PartialEmoji, str]
     ) -> bool:
-        """Adds a reaction to to the command message.
+        """Adds a reaction to the command message.
 
         Returns
         -------
