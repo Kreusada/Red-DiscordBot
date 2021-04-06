@@ -38,6 +38,7 @@ if TYPE_CHECKING:
 main_log = logging.getLogger("red")
 
 __all__ = (
+    "deprecated_removed",
     "safe_delete",
     "fuzzy_command_search",
     "format_fuzzy_results",
@@ -47,6 +48,21 @@ __all__ = (
     "expected_version",
     "fetch_latest_red_version_info",
 )
+
+def deprecated_removed(
+    deprecation_target: str,
+    deprecation_version: str,
+    minimum_days: int,
+    message: str = "",
+    stacklevel: int = 1,
+) -> None:
+    warnings.warn(
+        f"{deprecation_target} is deprecated since version {deprecation_version}"
+        " and will be removed in the first minor version that gets released"
+        f" after {minimum_days} days since deprecation. {message}",
+        DeprecationWarning,
+        stacklevel=stacklevel + 1,
+    )
 
 
 def safe_delete(pth: Path):
