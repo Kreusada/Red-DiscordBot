@@ -275,6 +275,24 @@ class RedHelpFormatter(HelpFormatterABC):
             "You can also type {ctx.clean_prefix}help <category> for more info on a category."
         ).format(ctx=ctx)
 
+    @staticmethod
+    def format_tagline(ctx: Context, tagline: str):
+        return tagline.replace("[p]", ctx.clean_prefix)
+
+    @staticmethod
+    def get_command_signature(ctx: Context, command: commands.Command) -> str:
+        parent = command.parent
+        entries = []
+        while parent is not None:
+            if not parent.signature or parent.invoke_without_command:
+                entries.append(parent.name)
+            else:
+                entries.append(parent.name + " " + parent.signature)
+            parent = parent.parent
+        parent_sig = (" ".join(reversed(entries)) + " ") if entries else ""
+
+        return f"{ctx.clean_prefix}{parent_sig}{command.name} {command.signature}"
+
     async def format_command_help(
         self, ctx: Context, obj: commands.Command, help_settings: HelpSettings
     ):
@@ -299,10 +317,10 @@ class RedHelpFormatter(HelpFormatterABC):
 
         description = command.description or ""
 
-        tagline = (help_settings.tagline) or self.get_default_tagline(ctx)
-        signature = _(
-            "Syntax: {ctx.clean_prefix}{command.qualified_name} {command.signature}"
-        ).format(ctx=ctx, command=command)
+        tagline = self.format_tagline(ctx, help_settings.tagline) or self.get_default_tagline(ctx)
+        signature = _("Syntax: {command_signature}").format(
+            command_signature=self.get_command_signature(ctx, command)
+        )
 
         aliases = command.aliases
         if help_settings.show_aliases and aliases:
@@ -348,7 +366,7 @@ class RedHelpFormatter(HelpFormatterABC):
                 emb["embed"]["title"] = f"*{description[:250]}*"
 
             emb["footer"]["text"] = tagline
-            emb["embed"]["description"] = box(signature, lang='yaml')
+            emb["embed"]["description"] = box(signature)
 
             command_help = command.format_help_for_context(ctx)
             if command_help:
@@ -368,7 +386,7 @@ class RedHelpFormatter(HelpFormatterABC):
                     return a_line[:67] + "..."
 
                 subtext = "\n".join(
-                    shorten_line(f"`{name}`: {command.format_shortdoc_for_context(ctx)}")
+                    shorten_line(f"**{name}** {command.format_shortdoc_for_context(ctx)}")
                     for name, command in sorted(subcommands.items())
                 )
                 for i, page in enumerate(pagify(subtext, page_length=500, shorten_by=0)):
@@ -520,7 +538,7 @@ class RedHelpFormatter(HelpFormatterABC):
             return
 
         description = obj.format_help_for_context(ctx)
-        tagline = (help_settings.tagline) or self.get_default_tagline(ctx)
+        tagline = self.format_tagline(ctx, help_settings.tagline) or self.get_default_tagline(ctx)
 
         if await ctx.embed_requested():
             emb = {"embed": {"title": "", "description": ""}, "footer": {"text": ""}, "fields": []}
@@ -543,7 +561,7 @@ class RedHelpFormatter(HelpFormatterABC):
                     return a_line[:67] + "..."
 
                 command_text = "\n".join(
-                    shorten_line(f"`{name}`: {command.format_shortdoc_for_context(ctx)}")
+                    shorten_line(f"**{name}** {command.format_shortdoc_for_context(ctx)}")
                     for name, command in sorted(coms.items())
                 )
                 for i, page in enumerate(pagify(command_text, page_length=500, shorten_by=0)):
@@ -587,7 +605,7 @@ class RedHelpFormatter(HelpFormatterABC):
             return
 
         description = ctx.bot.description or ""
-        tagline = (help_settings.tagline) or self.get_default_tagline(ctx)
+        tagline = self.format_tagline(ctx, help_settings.tagline) or self.get_default_tagline(ctx)
 
         if await ctx.embed_requested():
 
@@ -610,7 +628,7 @@ class RedHelpFormatter(HelpFormatterABC):
                     return a_line[:67] + "..."
 
                 cog_text = "\n".join(
-                    shorten_line(f"`{ctx.clean_prefix}{name}`: {command.format_shortdoc_for_context(ctx)}")
+                    shorten_line(f"**{name}** {command.format_shortdoc_for_context(ctx)}")
                     for name, command in sorted(data.items())
                 )
 
@@ -708,7 +726,9 @@ class RedHelpFormatter(HelpFormatterABC):
                     name=_("{ctx.me.display_name} Help Menu").format(ctx=ctx),
                     icon_url=ctx.me.avatar_url,
                 )
-                tagline = help_settings.tagline or self.get_default_tagline(ctx)
+                tagline = self.format_tagline(
+                    ctx, help_settings.tagline
+                ) or self.get_default_tagline(ctx)
                 ret.set_footer(text=tagline)
                 await ctx.send(embed=ret)
             else:
@@ -721,7 +741,9 @@ class RedHelpFormatter(HelpFormatterABC):
                     name=_("{ctx.me.display_name} Help Menu").format(ctx=ctx),
                     icon_url=ctx.me.avatar_url,
                 )
-                tagline = help_settings.tagline or self.get_default_tagline(ctx)
+                tagline = self.format_tagline(
+                    ctx, help_settings.tagline
+                ) or self.get_default_tagline(ctx)
                 ret.set_footer(text=tagline)
                 await ctx.send(embed=ret)
             else:
@@ -740,7 +762,9 @@ class RedHelpFormatter(HelpFormatterABC):
                 name=_("{ctx.me.display_name} Help Menu").format(ctx=ctx),
                 icon_url=ctx.me.avatar_url,
             )
-            tagline = help_settings.tagline or self.get_default_tagline(ctx)
+            tagline = self.format_tagline(ctx, help_settings.tagline) or self.get_default_tagline(
+                ctx
+            )
             ret.set_footer(text=tagline)
             await ctx.send(embed=ret)
         else:
