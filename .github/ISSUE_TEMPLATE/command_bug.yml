@@ -3,7 +3,7 @@ description: For bugs that involve commands found within Red.
 title: ''
 labels: 'Type: Bug'
 assignees: ''
-issue_body: true
+textarea: true
 body:
 - type: markdown
   attributes:

@@ -3,7 +3,7 @@ description: "For bugs that don't involve a command."
 title: ''
 labels: 'Type: Bug'
 assignees: ''
-issue_body: true
+textarea: true
 body:
 - type: markdown
   attributes:

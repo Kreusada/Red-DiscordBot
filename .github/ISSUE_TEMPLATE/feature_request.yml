@@ -3,7 +3,7 @@ description: For feature requests regarding Red itself.
 title: ''
 labels: 'Type: Feature'
 assignees: ''
-issue_body: true
+textarea: true
 body:
 - type: markdown
   attributes:
