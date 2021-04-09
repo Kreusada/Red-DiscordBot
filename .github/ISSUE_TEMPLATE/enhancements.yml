@@ -3,7 +3,7 @@ description: For feature requests and improvements related to already existing f
 title: ''
 labels: 'Type: Enhancement'
 assignees: ''
-issue_body: true
+textarea: true
 body:
 - type: markdown
   attributes:
