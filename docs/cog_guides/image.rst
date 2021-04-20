@@ -159,17 +159,31 @@ Explains how to set GIPHY API tokens.
 
 **Getting your API key**
 
-1. Login (or create) a GIPHY account.
-2. Visit `this page <https://developers.giphy.com/dashboard>`__.
-3. Press 'Create an App'.
-4. Click 'Select API', and then 'Next Step'.
-5. Add an app name, for example 'Red'.
-6. Add an app description, for example 'Used for Red's image cog'.
-7. Click 'Create App'. You'll need to agree to the GIPHY API terms.
-8. Copy the API Key.
+1. Login to (or create) a GIPHY account `here <https://giphy.com/login>`__. ## EDIT WORDING IN COG
+
+    .. image:: ../.resources/image/giphy/giphy-signin.png
+
+2. Visit `this page <https://developers.giphy.com/dashboard>`__, and click "Create app".
+
+    .. image:: ../.resources/image/giphy/giphy-create-app.png
+
+3. Select **API**, and then 'Next Step'.
+
+    .. image:: ../.resources/image/giphy/giphy-api.png 
+
+4. Add an app name and description to your application. For example, see below.
+
+    .. image:: ../.resources/image/giphy/giphy-app-details.png
+
+5. Click 'Create App'. You'll need to agree to the GIPHY API terms.
+
+6. Copy the API Key provided for your application.
+
+    .. image:: ../.resources/image/giphy/giphy-creds.png
+
 9. In Discord, run the following command::
 
-        [p]set api GIPHY api_key <your_api_key_here>
+    [p]set api GIPHY api_key <your_api_key_here>
 
 .. _image-command-imgurcreds:
 
@@ -191,7 +205,10 @@ Explains how to set Imgur API tokens.
 
 **Getting your API key**
 
-1. Login to (or create) an Imgur account.
+1. Login to (or create) an Imgur account `here <https://imgur.com/signin>`__.
+
+    .. image:: ../.resources/image/giphy/imgur-signin.png
+
 2. Visit `this page <https://api.imgur.com/oauth2/addclient>`__.
 3. Add an app name for your application, for example 'Red'.
 4. Select 'Anonymous usage without user authorization' for the auth type.
@@ -202,4 +219,4 @@ Explains how to set Imgur API tokens.
 9. Your Client ID will be on the next page.
 10. In Discord, run the following command::
 
-        [p]set api imgur client_id <your_client_id_here>
+    [p]set api imgur client_id <your_client_id_here>
