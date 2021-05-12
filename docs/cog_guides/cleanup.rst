@@ -74,8 +74,8 @@ and copy its id.
 
 **Arguments:**
 
-- ``<message_id>`` The id of the message to cleanup after. This message won't be deleted.
-- ``<delete_pinned>`` Whether to delete pinned messages or not. Defaults to False
+- ``<message_id>``: The id of the message to cleanup after. This message won't be deleted.
+- ``<delete_pinned>``: Whether to delete pinned messages or not. Defaults to False
 
 .. _cleanup-command-cleanup-before:
 
@@ -101,9 +101,9 @@ and copy its id.
 
 **Arguments:**
 
-- ``<message_id>`` The id of the message to cleanup before. This message won't be deleted.
-- ``<number>`` The max number of messages to cleanup. Must be a positive integer.
-- ``<delete_pinned>`` Whether to delete pinned messages or not. Defaults to False
+- ``<message_id>``: The id of the message to cleanup before. This message won't be deleted.
+- ``<number>``: The max number of messages to cleanup. Must be a positive integer.
+- ``<delete_pinned>``: Whether to delete pinned messages or not. Defaults to False
 
 .. _cleanup-command-cleanup-between:
 
@@ -130,9 +130,9 @@ Example:
 
 **Arguments:**
 
-- ``<one>`` The id of the message to cleanup after. This message won't be deleted.
-- ``<two>`` The id of the message to cleanup before. This message won't be deleted.
-- ``<delete_pinned>`` Whether to delete pinned messages or not. Defaults to False
+- ``<one>``: The id of the message to cleanup after. This message won't be deleted.
+- ``<two>``: The id of the message to cleanup before. This message won't be deleted.
+- ``<delete_pinned>``: Whether to delete pinned messages or not. Defaults to False
 
 .. _cleanup-command-cleanup-bot:
 
@@ -156,8 +156,8 @@ Can only cleanup custom commands and alias commands if those cogs are loaded.
 
 **Arguments:**
 
-- ``<number>`` The max number of messages to cleanup. Must be a positive integer.
-- ``<delete_pinned>`` Whether to delete pinned messages or not. Defaults to False
+- ``<number>``: The max number of messages to cleanup. Must be a positive integer.
+- ``<delete_pinned>``: Whether to delete pinned messages or not. Defaults to False
 
 .. _cleanup-command-cleanup-messages:
 
@@ -182,8 +182,8 @@ Example:
 
 **Arguments:**
 
-- ``<number>`` The max number of messages to cleanup. Must be a positive integer.
-- ``<delete_pinned>`` Whether to delete pinned messages or not. Defaults to False
+- ``<number>``: The max number of messages to cleanup. Must be a positive integer.
+- ``<delete_pinned>``: Whether to delete pinned messages or not. Defaults to False
 
 .. _cleanup-command-cleanup-self:
 
@@ -211,9 +211,9 @@ Examples:
 
 **Arguments:**
 
-- ``<number>`` The max number of messages to cleanup. Must be a positive integer.
-- ``<match_pattern>`` The text that messages must contain to be deleted. Use "" to skip this.
-- ``<delete_pinned>`` Whether to delete pinned messages or not. Defaults to False
+- ``<number>``: The max number of messages to cleanup. Must be a positive integer.
+- ``<match_pattern>``: The text that messages must contain to be deleted. Use "" to skip this.
+- ``<delete_pinned>``: Whether to delete pinned messages or not. Defaults to False
 
 .. _cleanup-command-cleanup-spam:
 
@@ -237,7 +237,7 @@ Defaults to 50.
 
 **Arguments:**
 
-- ``<number>`` The number of messages to check for duplicates. Must be a positive integer.
+- ``<number>``: The number of messages to check for duplicates. Must be a positive integer.
 
 .. _cleanup-command-cleanup-text:
 
@@ -264,8 +264,8 @@ Remember to use double quotes.
 
 **Arguments:**
 
-- ``<number>`` The max number of messages to cleanup. Must be a positive integer.
-- ``<delete_pinned>`` Whether to delete pinned messages or not. Defaults to False
+- ``<number>``: The max number of messages to cleanup. Must be a positive integer.
+- ``<delete_pinned>``: Whether to delete pinned messages or not. Defaults to False
 
 .. _cleanup-command-cleanup-user:
 
@@ -291,6 +291,6 @@ Examples:
 
 **Arguments:**
 
-- ``<user>`` The user whose messages are to be cleaned up.
-- ``<number>`` The max number of messages to cleanup. Must be a positive integer.
-- ``<delete_pinned>`` Whether to delete pinned messages or not. Defaults to False
+- ``<user>``: The user whose messages are to be cleaned up.
+- ``<number>``: The max number of messages to cleanup. Must be a positive integer.
+- ``<delete_pinned>``: Whether to delete pinned messages or not. Defaults to False
