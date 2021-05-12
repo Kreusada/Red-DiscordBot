@@ -66,7 +66,7 @@ Example:
 
 **Arguments**
 
-- ``<user>`` The user to check the balance of. If omitted, defaults to your own balance.
+- ``<user>``: The user to check the balance of. If omitted, defaults to your own balance.
 
 .. _economy-command-bank-prune:
 
@@ -112,7 +112,7 @@ Examples:
 
 **Arguments**
 
-- ``<confirmation>`` This will default to false unless specified.
+- ``<confirmation>``: This will default to false unless specified.
 
 .. _economy-command-bank-prune-server:
 
@@ -142,7 +142,7 @@ Examples:
 
 **Arguments**
 
-- ``<confirmation>`` This will default to false unless specified.
+- ``<confirmation>``: This will default to false unless specified.
 
 .. _economy-command-bank-prune-user:
 
@@ -166,8 +166,8 @@ Examples:
 
 **Arguments**
 
-- ``<user>`` The user to delete the bank of. Takes mentions, names, and user ids.
-- ``<confirmation>`` This will default to false unless specified.
+- ``<user>``: The user to delete the bank of. Takes mentions, names, and user ids.
+- ``<confirmation>``: This will default to false unless specified.
 
 .. _economy-command-bank-reset:
 
@@ -193,7 +193,7 @@ Examples:
 
 **Arguments**
 
-- ``<confirmation>`` This will default to false unless specified.
+- ``<confirmation>``: This will default to false unless specified.
 
 .. _economy-command-bank-set:
 
@@ -222,8 +222,8 @@ Examples:
 
 **Arguments**
 
-- ``<to>`` The user to set the currency of.
-- ``<creds>`` The amount of currency to set their balance to.
+- ``<to>``: The user to set the currency of.
+- ``<creds>``: The amount of currency to set their balance to.
 
 .. _economy-command-bank-transfer:
 
@@ -248,8 +248,8 @@ Example:
 
 **Arguments**
 
-- ``<to>`` The user to give currency to.
-- ``<amount>`` The amount of currency to give.
+- ``<to>``: The user to give currency to.
+- ``<amount>``: The amount of currency to give.
 
 .. _economy-command-economyset:
 
@@ -290,7 +290,7 @@ Example:
 
 **Arguments**
 
-- ``<creds>`` The new amount to give when using the payday command. Default is 120.
+- ``<creds>``: The new amount to give when using the payday command. Default is 120.
 
 .. _economy-command-economyset-paydaytime:
 
@@ -314,7 +314,7 @@ Examples:
 
 **Arguments**
 
-- | ``<duration>`` The new duration to wait in between uses of payday. Default is 5 minutes.
+- | ``<duration>``: The new duration to wait in between uses of payday. Default is 5 minutes.
   | Accepts: seconds, minutes, hours, days, weeks (if no unit is specified, the duration is assumed to be given in seconds)
 
 .. _economy-command-economyset-registeramount:
@@ -338,7 +338,7 @@ Example:
 
 **Arguments**
 
-- ``<creds>`` The new initial balance amount. Default is 0.
+- ``<creds>``: The new initial balance amount. Default is 0.
 
 .. _economy-command-economyset-rolepaydayamount:
 
@@ -363,8 +363,8 @@ Example:
 
 **Arguments**
 
-- ``<role>`` The role to assign a custom payday amount to.
-- ``<creds>`` The new amount to give when using the payday command.
+- ``<role>``: The role to assign a custom payday amount to.
+- ``<creds>``: The new amount to give when using the payday command.
 
 .. _economy-command-economyset-showsettings:
 
@@ -403,7 +403,7 @@ Example:
 
 **Arguments**
 
-- ``<bid>`` The new maximum bid for using the slot machine. Default is 100.
+- ``<bid>``: The new maximum bid for using the slot machine. Default is 100.
 
 .. _economy-command-economyset-slotmin:
 
@@ -426,7 +426,7 @@ Example:
 
 **Arguments**
 
-- ``<bid>`` The new minimum bid for using the slot machine. Default is 5.
+- ``<bid>``: The new minimum bid for using the slot machine. Default is 5.
 
 .. _economy-command-economyset-slottime:
 
@@ -450,7 +450,7 @@ Examples:
 
 **Arguments**
 
-- | ``<duration>`` The new duration to wait in between uses of the slot machine. Default is 5 seconds.
+- | ``<duration>``: The new duration to wait in between uses of the slot machine. Default is 5 seconds.
   | Accepts: seconds, minutes, hours, days, weeks (if no unit is specified, the duration is assumed to be given in seconds)
 
 .. _economy-command-leaderboard:
@@ -478,8 +478,8 @@ Examples:
 
 **Arguments**
 
-- ``<top>`` How many positions on the leaderboard to show. Defaults to 10 if omitted.
-- ``<show_global>`` Whether to include results from all servers. This will default to false unless specified.
+- ``<top>``: How many positions on the leaderboard to show. Defaults to 10 if omitted.
+- ``<show_global>``: Whether to include results from all servers. This will default to false unless specified.
 
 .. _economy-command-payday:
 
@@ -536,4 +536,4 @@ Example:
 
 **Arguments**
 
-- ``<bid>`` The amount to bet on the slot machine. Winning payouts are higher when you bet more.
+- ``<bid>``: The amount to bet on the slot machine. Winning payouts are higher when you bet more.
