@@ -49,7 +49,7 @@ to be set via the :ref:`giphycreds <image-command-giphycreds>` command.
 
 **Arguments**
 
-* ``<keywords...>``: The keywords used to search Giphy.
+* ``<keywords...>`` - The keywords used to search Giphy.
 
 .. _image-command-gifr:
 
@@ -70,7 +70,7 @@ to be set via the :ref:`giphycreds <image-command-giphycreds>` command.
 
 **Arguments**
 
-* ``<keywords...>``: The keywords used to generate a random GIF.
+* ``<keywords...>`` - The keywords used to generate a random GIF.
 
 .. _image-command-imgur:
 
@@ -108,9 +108,9 @@ via the :ref:`imgurcreds <image-command-imgurcreds>` command.
 
 **Arguments**
 
-* ``[count]``: How many images should be returned (maximum 5). Defaults to 1.
+* ``[count]`` - How many images should be returned (maximum 5). Defaults to 1.
 
-* ``<terms...>``: The terms used to search Imgur.
+* ``<terms...>`` - The terms used to search Imgur.
 
 .. _image-command-imgur-subreddit:
 
@@ -131,13 +131,13 @@ via the :ref:`imgurcreds <image-command-imgurcreds>` command.
 
 **Arguments**
 
-* ``<subreddit>``: The subreddit to get images from.
+* ``<subreddit>`` - The subreddit to get images from.
 
-* ``[count]``: The number of images to return (maximum 5). Defaults to 1.
+* ``[count]`` - The number of images to return (maximum 5). Defaults to 1.
 
-* ``[sort_type]``: New, or top results. Defaults to top.
+* ``[sort_type]`` - New, or top results. Defaults to top.
 
-* ``[window]``: The timeframe, can be the past day, week, month, year or all. Defaults to day.
+* ``[window]`` - The timeframe, can be the past day, week, month, year or all. Defaults to day.
 
 .. _image-command-giphycreds:
 
