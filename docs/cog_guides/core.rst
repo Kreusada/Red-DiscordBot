@@ -788,7 +788,7 @@ dm
 
 Sends a DM to a user.
 
-You can mention the user, provide their name or provide their ID
+You can mention the user, provide their name, or provide their ID
 if they are in the current guild. Otherwise, this command needs a user ID to work.
 
 To get a user ID, go to Discord's settings and open the 'Appearance' tab.
