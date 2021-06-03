@@ -3466,13 +3466,13 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         Enable 'Developer Mode', then right click a user and click on 'Copy ID'.
 
         **Example:**
-            - `[p]dm @User1234 hello there!
+            - `[p]dm @User1234 hello there!`
             - `[p]dm 262626262626262626 Do you like me? Yes / No`
 
         **Arguments:**
             - `[message]` - The message to dm to the user.
         """
-        if isinstance(user_id, int):
+        if isinstance(user, int):
             destination = self.bot.get_user(user)
         else:
             destination = user
