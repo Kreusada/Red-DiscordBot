@@ -799,7 +799,7 @@ Enable 'Developer Mode', then right click a user and click on 'Copy ID'.
     - ``[p]dm 262626262626262626 Do you like me? Yes / No``
 
 **Arguments:**
-    - `[message]` - The message to dm to the user.
+    - ``[message]`` - The message to dm to the user.
 
 .. _core-command-embedset:
 
