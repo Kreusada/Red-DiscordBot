@@ -3456,21 +3456,26 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
 
     @commands.command()
     @checks.is_owner()
-    async def dm(self, ctx: commands.Context, user_id: int, *, message: str):
+    async def dm(self, ctx: commands.Context, user: Union[discord.Member, int], *, message: str):
         """Sends a DM to a user.
 
-        This command needs a user ID to work.
+        You can mention the user, provide their name or provide their ID
+        if they are in the current guild. Otherwise, this command needs a user ID to work.
 
         To get a user ID, go to Discord's settings and open the 'Appearance' tab.
         Enable 'Developer Mode', then right click a user and click on 'Copy ID'.
 
         **Example:**
+            - `[p]dm @User1234 hello there!
             - `[p]dm 262626262626262626 Do you like me? Yes / No`
 
         **Arguments:**
             - `[message]` - The message to dm to the user.
         """
-        destination = self.bot.get_user(user_id)
+        if isinstance(user_id, int):
+            destination = self.bot.get_user(user)
+        else:
+            destination = user
         if destination is None or destination.bot:
             await ctx.send(
                 _(
