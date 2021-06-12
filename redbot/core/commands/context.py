@@ -9,6 +9,7 @@ import discord
 from discord.ext.commands import Context as DPYContext
 
 from .requires import PermState
+from ..utils.embed import randomize_color
 from ..utils.chat_formatting import box
 from ..utils.predicates import MessagePredicate
 from ..utils import common_filters
