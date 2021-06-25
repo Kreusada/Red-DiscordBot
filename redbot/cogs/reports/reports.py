@@ -241,7 +241,10 @@ class Reports(commands.Cog):
         """Send a report.
 
         Use without arguments for interactive reporting, or do
-        `[p]report [text]` to use it non-interactively.
+        ``[p]report [text]`` to use it non-interactively.
+
+        **Arguments**
+            - `[text]`: The content included within the report.
         """
         author = ctx.author
         guild = ctx.guild
@@ -398,6 +401,9 @@ class Reports(commands.Cog):
         to the ticket opener's direct messages.
 
         Tunnels do not persist across bot restarts.
+
+        **Arguments**
+            - `<ticket_number>`: The ticket number to open the tunnel in.
         """
 
         guild = ctx.guild
