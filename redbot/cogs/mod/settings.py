@@ -144,6 +144,10 @@ class ModSettings(MixinMeta):
         If disabled only unique mentions will count.
 
         Use this command without any parameter to see current setting.
+
+        **Arguments**
+            - ``[enabled]``: Whether all mentions will count, including duplicated mentions. 
+            Provide True or False.
         """
         guild = ctx.guild
         if enabled is None:
@@ -171,7 +175,8 @@ class ModSettings(MixinMeta):
         Users will be warned if they send any messages which contain more than
         `<max_mentions>` mentions.
 
-        `<max_mentions>` Must be 0 or greater. Set to 0 to disable this feature.
+        **Arguments**
+            - ``<max_mentions>``: Must be 0 or greater. Set to 0 to disable this feature.
         """
         mention_spam = await self.config.guild(ctx.guild).mention_spam.all()
         if not max_mentions:
@@ -211,7 +216,8 @@ class ModSettings(MixinMeta):
         Users will be kicked if they send any messages which contain more than
         `<max_mentions>` mentions.
 
-        `<max_mentions>` Must be 0 or greater. Set to 0 to disable this feature.
+        **Arguments**
+            - ``<max_mentions>``: Must be 0 or greater. Set to 0 to disable this feature.
         """
         mention_spam = await self.config.guild(ctx.guild).mention_spam.all()
         if not max_mentions:
@@ -250,7 +256,8 @@ class ModSettings(MixinMeta):
         Users will be banned if they send any message which contains more than
         `<max_mentions>` mentions.
 
-        `<max_mentions>` Must be 0 or greater. Set to 0 to disable this feature.
+        **Arguments**
+            - `<max_mentions>`: Must be 0 or greater. Set to 0 to disable this feature.
         """
         mention_spam = await self.config.guild(ctx.guild).mention_spam.all()
         if not max_mentions:
@@ -286,9 +293,9 @@ class ModSettings(MixinMeta):
     async def deleterepeats(self, ctx: commands.Context, repeats: int = None):
         """Enable auto-deletion of repeated messages.
 
-        Must be between 2 and 20.
-
-        Set to -1 to disable this feature.
+        **Arguments**
+            - ``[repeats]``: The number of repeated messages needed before further messages are deleted.
+                This must be between 2 and 20. Set to -1 to disable this feature.
         """
         guild = ctx.guild
         if repeats is not None:
@@ -355,6 +362,10 @@ class ModSettings(MixinMeta):
 
         If this option is enabled, the bot will attempt to DM the user with the guild name
         and reason as to why they were kicked/banned.
+
+        **Arguments**
+            - ``[enabled]``: Whether a message should be sent to a user when they are kicked/banned.
+                Provide either true or false.
         """
         guild = ctx.guild
         if enabled is None:
@@ -377,6 +388,11 @@ class ModSettings(MixinMeta):
         """Set the default number of days worth of messages to be deleted when a user is banned.
 
         The number of days must be between 0 and 7.
+
+        **Arguments**
+            - ``[days=0]``: The default number of days of messages to be deleted when a user is banned.
+
+        .. note:: This value must be between 0 and 7.
         """
         guild = ctx.guild
         if not (0 <= days <= 7):
@@ -403,9 +419,12 @@ class ModSettings(MixinMeta):
         Accepts: seconds, minutes, hours, days, weeks
         `duration` must be greater than zero.
 
-        Examples:
-            `[p]modset defaultduration 7d12h10m`
-            `[p]modset defaultduration 7 days 12 hours 10 minutes`
+        **Arguments**
+            - ``<duration>``: The default duration for when a user is temporarily banned. Accepts seconds, minutes, hours, days or weeks.
+
+        **Example Usage**
+            - ``[p]modset defaultduration 7d12h10m``
+            - ``[p]modset defaultduration 7 days 12 hours 10 minutes``
         """
         guild = ctx.guild
         await self.config.guild(guild).default_tempban_duration.set(duration.total_seconds())
@@ -422,6 +441,9 @@ class ModSettings(MixinMeta):
         Toggle whether nickname changes should be tracked.
 
         This setting will be overridden if trackallnames is disabled.
+
+        **Arguments**
+            - ``[enabled]``: Whether all nickname changes should be tracked. Provide either true or false.
         """
         guild = ctx.guild
         if enabled is None:
@@ -447,6 +469,9 @@ class ModSettings(MixinMeta):
         Toggle whether all name changes should be tracked.
 
         Toggling this off also overrides the tracknicknames setting.
+
+        **Arguments**
+            - ``[enabled]``: Whether all name changes should be tracked. Provide either true or false.
         """
         if enabled is None:
             state = await self.config.track_all_names()
@@ -474,12 +499,11 @@ class ModSettings(MixinMeta):
         """Delete all stored usernames and nicknames.
 
         Examples:
-            - `[p]modset deletenames` - Did not confirm. Shows the help message.
-            - `[p]modset deletenames yes` - Deletes all stored usernames and nicknames.
+            - `[p]modset deletenames`: Did not confirm. Shows the help message.
+            - `[p]modset deletenames yes`: Deletes all stored usernames and nicknames.
 
         **Arguments**
-
-        - `<confirmation>` This will default to false unless specified.
+            - `<confirmation>`: This will default to false unless specified.
         """
         if not confirmation:
             await ctx.send(
