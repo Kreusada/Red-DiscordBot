@@ -294,10 +294,14 @@ class KickBanMixin(MixinMeta):
         """
         Kick a user.
 
-        Examples:
-           - `[p]kick 428675506947227648 wanted to be kicked.`
+        **Arguments**
+            - ``<member>``: The member to kick. |member-input|
+            - ``[reason]``: The reason why the user was kicked (optional).
+
+        **Example Usage**
+            - ``[p]kick 428675506947227648 wanted to be kicked.``
             This will kick Twentysix from the server.
-           - `[p]kick @Twentysix wanted to be kicked.`
+            - ``[p]kick @Twentysix wanted to be kicked.``
             This will kick Twentysix from the server.
 
         If a reason is specified, it will be the reason that shows up
@@ -378,12 +382,15 @@ class KickBanMixin(MixinMeta):
     ):
         """Ban a user from this server and optionally delete days of messages.
 
-        `days` is the amount of days of messages to cleanup on ban.
+        **Arguments**
+            - ``<user>``: The user to ban. |user-input|
+            - ``[days]``: The amount of days of messages to cleanup on ban. This parameter defaults to the defaultdays setting, or no days if this has not yet been configured.
+            - ``[reason]``: The reason why the user was banned (optional).
 
-        Examples:
-           - `[p]ban 428675506947227648 7 Continued to spam after told to stop.`
+        **Example Usage**
+            - ``[p]ban 428675506947227648 7 Continued to spam after told to stop.``
             This will ban Twentysix and it will delete 7 days worth of messages.
-           - `[p]ban @Twentysix 7 Continued to spam after told to stop.`
+            - ``[p]ban @Twentysix 7 Continued to spam after told to stop.``
             This will ban Twentysix and it will delete 7 days worth of messages.
 
         A user ID should be provided if the user is not a member of this server.
@@ -416,14 +423,14 @@ class KickBanMixin(MixinMeta):
     ):
         """Mass bans user(s) from the server.
 
-        `days` is the amount of days of messages to cleanup on massban.
+        **Arguments**
+            - ``<user_ids...>``: The users to ban. This must be a list of user IDs separated by spaces.
+            - ``[days]``: The amount of days of messages to cleanup on massban.
+            - ``[reason]``: The reason why these users were banned.
 
-        Example:
-           - `[p]massban 345628097929936898 57287406247743488 7 they broke all rules.`
+        **Example Usage**
+            - ``[p]massban 345628097929936898 57287406247743488 7 they broke all rules.``
             This will ban all the added userids and delete 7 days worth of their messages.
-
-        User IDs need to be provided in order to ban
-        using this command.
         """
         banned = []
         errors = {}
@@ -588,15 +595,18 @@ class KickBanMixin(MixinMeta):
     ):
         """Temporarily ban a user from this server.
 
-        `duration` is the amount of time the user should be banned for.
-        `days` is the amount of days of messages to cleanup on tempban.
+        **Arguments**
+            - ``<member>``: The member to temporarily ban. |member-input-quotes|
+            - ``[duration]``: The amount of time the user should be banned for.
+            - ``[days]``: The amount of days of messages to cleanup on tempban.
+            - ``[reason]``: The reason for the tempban (optional).
 
-        Examples:
-           - `[p]tempban @Twentysix Because I say so`
+        **Example Usage**
+            - ``[p]tempban @Twentysix Because I say so``
             This will ban Twentysix for the default amount of time set by an administrator.
-           - `[p]tempban @Twentysix 15m You need a timeout`
+            - ``[p]tempban @Twentysix 15m You need a timeout``
             This will ban Twentysix for 15 minutes.
-           - `[p]tempban 428675506947227648 1d2h15m 5 Evil person`
+            - ``[p]tempban 428675506947227648 1d2h15m 5 Evil person``
             This will ban the user for 1 day 2 hours 15 minutes and will delete the last 5 days of their messages.
         """
         guild = ctx.guild
@@ -675,7 +685,13 @@ class KickBanMixin(MixinMeta):
     @commands.bot_has_permissions(ban_members=True)
     @checks.admin_or_permissions(ban_members=True)
     async def softban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None):
-        """Kick a user and delete 1 day's worth of their messages."""
+        """Kick a user and delete 1 day's worth of their messages.
+
+        **Arguments**
+            - ``<member>``: The member to softban. |member-input-quotes|
+            - ``[reason]``: Reason for the kick (optional).
+        """
+
         guild = ctx.guild
         author = ctx.author
 
@@ -759,7 +775,12 @@ class KickBanMixin(MixinMeta):
     async def voicekick(
         self, ctx: commands.Context, member: discord.Member, *, reason: str = None
     ):
-        """Kick a member from a voice channel."""
+        """Kick a member from a voice channel.
+
+        **Arguments**
+            - ``<member>``: |member-input|
+            - ``[reason]``: The reason for the voicekick (optional).
+        """
         author = ctx.author
         guild = ctx.guild
         user_voice_state: discord.VoiceState = member.voice
@@ -805,7 +826,12 @@ class KickBanMixin(MixinMeta):
     async def voiceunban(
         self, ctx: commands.Context, member: discord.Member, *, reason: str = None
     ):
-        """Unban a user from speaking and listening in the server's voice channels."""
+        """Unban a user from speaking and listening in the server's voice channels.
+
+        **Arguments**
+            - ``<member>``: The member to unban from voice. |member-input-quotes|
+            - ``[reason]``: The reason for the voiceunban (optional).
+        """
         user_voice_state = member.voice
         if (
             await self._voice_perm_check(
@@ -846,7 +872,12 @@ class KickBanMixin(MixinMeta):
     @commands.guild_only()
     @checks.admin_or_permissions(mute_members=True, deafen_members=True)
     async def voiceban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None):
-        """Ban a user from speaking and listening in the server's voice channels."""
+        """Ban a user from speaking and listening in the server's voice channels.
+        
+        **Arguments**
+            - ``<member>``: The member to ban from voice. |member-input|
+            - ``[reason]``: The reason for the voiceban (optional).
+        """
         user_voice_state: discord.VoiceState = member.voice
         if (
             await self._voice_perm_check(
