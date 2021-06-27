@@ -473,7 +473,7 @@ movedeletedelay
 
 **Description**
 
-Move deletedelay settings to core
+Move deletedelay settings to core.
 
 .. _mod-command-moveignoredchannels:
 
@@ -491,7 +491,7 @@ moveignoredchannels
 
 **Description**
 
-Move ignored channels and servers to core
+Move ignored channels and servers to core.
 
 .. _mod-command-names:
 

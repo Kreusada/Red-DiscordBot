@@ -182,7 +182,7 @@ class Mod(
     @commands.command()
     @commands.is_owner()
     async def moveignoredchannels(self, ctx: commands.Context) -> None:
-        """Move ignored channels and servers to core"""
+        """Move ignored channels and servers to core."""
         all_guilds = await self.config.all_guilds()
         all_channels = await self.config.all_channels()
         for guild_id, settings in all_guilds.items():
@@ -196,9 +196,7 @@ class Mod(
     @commands.command()
     @commands.is_owner()
     async def movedeletedelay(self, ctx: commands.Context) -> None:
-        """
-        Move deletedelay settings to core
-        """
+        """Move deletedelay settings to core."""
         all_guilds = await self.config.all_guilds()
         for guild_id, settings in all_guilds.items():
             await self.bot._config.guild_from_id(guild_id).delete_delay.set(
