@@ -50,16 +50,14 @@ Ban a user from this server and optionally delete days of messages.
 ``days`` is the amount of days of messages to cleanup on ban.
 
 **Arguments**
-
-* ``<user>``: The user to ban. |user-input|
-* ``[days]``: The amount of days of messages to cleanup on ban. This parameter defaults to the defaultdays setting, or no days if this has not yet been configured.
-* ``[reason]``: The reason why the user was banned (optional).
+    - ``<user>``: The user to ban. |user-input|
+    - ``[days]``: The amount of days of messages to cleanup on ban. This parameter defaults to the defaultdays setting, or no days if this has not yet been configured.
+    - ``[reason]``: The reason why the user was banned (optional).
 
 **Example Usage**
-
-* ``[p]ban 428675506947227648 7 Continued to spam after told to stop.``
+    - ``[p]ban 428675506947227648 7 Continued to spam after told to stop.``
     This will ban Twentysix and it will delete 7 days worth of messages.
-* ``[p]ban @Twentysix 7 Continued to spam after told to stop.``
+    - ``[p]ban @Twentysix 7 Continued to spam after told to stop.``
     This will ban Twentysix and it will delete 7 days worth of messages.
 
 A user ID should be provided if the user is not a member of this server.
@@ -85,15 +83,13 @@ kick
 Kick a user.
 
 **Arguments**
-
-* ``<member>``: The member to kick. |member-input|
-* ``[reason]``: The reason why the user was kicked (optional).
+    - ``<member>``: The member to kick. |member-input|
+    - ``[reason]``: The reason why the user was kicked (optional).
 
 **Example Usage**
-
-* ``[p]kick 428675506947227648 wanted to be kicked.``
+    - ``[p]kick 428675506947227648 wanted to be kicked.``
     This will kick Twentysix from the server.
-* ``[p]kick @Twentysix wanted to be kicked.``
+    - ``[p]kick @Twentysix wanted to be kicked.``
     This will kick Twentysix from the server.
 
 If a reason is specified, it will be the reason that shows up
@@ -120,14 +116,12 @@ massban
 Mass bans user(s) from the server.
 
 **Arguments**
-
-* ``<user_ids...>``: The users to ban. This must be a list of user IDs separated by spaces.
-* ``[days]``: The amount of days of messages to cleanup on massban.
-* ``[reason]``: The reason why these users were banned.
+    - ``<user_ids...>``: The users to ban. This must be a list of user IDs separated by spaces.
+    - ``[days]``: The amount of days of messages to cleanup on massban.
+    - ``[reason]``: The reason why these users were banned.
 
 **Example Usage**
-
-* ``[p]massban 345628097929936898 57287406247743488 7 they broke all rules.``
+    - ``[p]massban 345628097929936898 57287406247743488 7 they broke all rules.``
     This will ban all the added userids and delete 7 days worth of their messages.
 
 .. _mod-command-modset:
@@ -167,8 +161,7 @@ Set the default number of days worth of messages to be deleted when a user is ba
 The number of days must be between 0 and 7.
 
 **Arguments**
-
-* ``[days=0]``: The default number of days of messages to be deleted when a user is banned.
+    - ``[days=0]``: The default number of days of messages to be deleted when a user is banned.
 
 .. note:: This value must be between 0 and 7.
 
@@ -191,13 +184,11 @@ Set the default time to be used when a user is tempbanned.
 Accepts: seconds, minutes, hours, days, weeks
 
 **Arguments**
-
-* ``<duration>``: The default duration for when a user is temporarily banned. Accepts seconds, minutes, hours, days or weeks.
+    - ``<duration>``: The default duration for when a user is temporarily banned. Accepts seconds, minutes, hours, days or weeks.
 
 **Example Usage**
-
-* ``[p]modset defaultduration 7d12h10m``
-* ``[p]modset defaultduration 7 days 12 hours 10 minutes``
+    - ``[p]modset defaultduration 7d12h10m``
+    - ``[p]modset defaultduration 7 days 12 hours 10 minutes``
 
 .. _mod-command-modset-deletenames:
 
@@ -218,8 +209,7 @@ modset deletenames
 Delete all stored usernames and nicknames.
 
 **Arguments**
-
-- ``<confirmation>``: Whether to delete all stored usernames and nicknames. |bool-input|
+    - ``<confirmation>``: Whether to delete all stored usernames and nicknames. |bool-input|
 
 .. _mod-command-modset-deleterepeats:
 
@@ -238,8 +228,7 @@ modset deleterepeats
 Enable auto-deletion of repeated messages.
 
 **Arguments**
-
-* ``[repeats]``: The number of repeated messages needed before further messages are deleted.
+    - ``[repeats]``: The number of repeated messages needed before further messages are deleted.
 
 .. note:: Must be between 2 and 20. Set to -1 to disable this feature.
 
@@ -263,8 +252,7 @@ If this option is enabled, the bot will attempt to DM the user with the guild na
 and reason as to why they were kicked/banned.
 
 **Arguments**
-
-* ``[enabled]``: Whether a message should be sent to a user when they are kicked/banned. |bool-input|
+    - ``[enabled]``: Whether a message should be sent to a user when they are kicked/banned. |bool-input|
 
 .. _mod-command-modset-hierarchy:
 
@@ -322,8 +310,7 @@ Users will be banned if they send any message which contains more than
 ``<max_mentions>`` mentions.
 
 **Arguments**
-
-* ``<max_mentions>``: Must be 0 or greater. Set to 0 to disable this feature.
+    - ``<max_mentions>``: Must be 0 or greater. Set to 0 to disable this feature.
 
 .. _mod-command-modset-mentionspam-kick:
 
@@ -345,8 +332,7 @@ Users will be kicked if they send any message which contains more than
 ``<max_mentions>`` mentions.
 
 **Arguments**
-
-* ``<max_mentions>``: Must be 0 or greater. Set to 0 to disable this feature.
+    - ``<max_mentions>``: Must be 0 or greater. Set to 0 to disable this feature.
 
 .. _mod-command-modset-mentionspam-strict:
 
@@ -370,8 +356,7 @@ If disabled only unique mentions will count.
 Use this command without any parameter to see the current setting.
 
 **Arguments**
-
-* ``[enabled]``: Whether all mentions will count, including duplicated mentions. |bool-input|
+    - ``[enabled]``: Whether all mentions will count, including duplicated mentions. |bool-input|
 
 .. _mod-command-modset-mentionspam-warn:
 
@@ -393,8 +378,7 @@ Users will be warned if they send any messages which contain more than
 ``<max_mentions>`` mentions.
 
 **Arguments**
-
-* ``<max_mentions>``: Must be 0 or greater. Set to 0 to disable this feature.
+    - ``<max_mentions>``: Must be 0 or greater. Set to 0 to disable this feature.
 
 .. _mod-command-modset-reinvite:
 
@@ -452,8 +436,7 @@ Toggle whether all name changes should be tracked.
 Toggling this off also overrides the tracknicknames setting.
 
 **Arguments**
-
-* ``[enabled]``: Whether all name changes should be tracked. |bool-input|
+    - ``[enabled]``: Whether all name changes should be tracked. |bool-input|
 
 .. _mod-command-modset-tracknicknames:
 
@@ -474,8 +457,7 @@ Toggle whether nickname changes should be tracked.
 This setting will be overridden if trackallnames is disabled.
 
 **Arguments**
-
-* ``[enabled]``: Whether all nickname changes should be tracked. |bool-input|
+    - ``[enabled]``: Whether all nickname changes should be tracked. |bool-input|
 
 .. _mod-command-movedeletedelay:
 
@@ -530,8 +512,7 @@ names
 Show previous names and nicknames of a member.
 
 **Arguments**
-
-* ``<member>``: |member-input|
+    - ``<member>``: |member-input|
 
 .. _mod-command-rename:
 
@@ -554,9 +535,8 @@ Change a member's nickname.
 Leaving the nickname empty will remove it.
 
 **Arguments**
-
-* ``<member>``: |member-input|
-* ``[nickname]``: The new nickname for the member.
+    - ``<member>``: |member-input|
+    - ``[nickname]``: The new nickname for the member.
 
 .. _mod-command-slowmode:
 
@@ -580,8 +560,7 @@ Interval can be anything from 0 seconds to 6 hours.
 Use without parameters to disable.
 
 **Arguments**
-
-* ``[interval=0:00:00]``: The time for the channel's slowmode settings.
+    - ``[interval=0:00:00]``: The time for the channel's slowmode settings.
 
 .. note::
     Interval can be anything from 0 seconds to 6 hours.
@@ -606,9 +585,8 @@ softban
 Kick a member and delete 1 day's worth of their messages.
 
 **Arguments**
-
-* ``<member>``: The member to softban. |member-input-quotes|
-* ``[reason]``: Reason for the kick (optional).
+    - ``<member>``: The member to softban. |member-input-quotes|
+    - ``[reason]``: Reason for the kick (optional).
 
 .. _mod-command-tempban:
 
@@ -629,19 +607,17 @@ tempban
 Temporarily ban a user from this server.
 
 **Arguments**
-
-* ``<member>``: The member to temporarily ban. |member-input-quotes|
-* ``[duration]``: The amount of time the user should be banned for.
-* ``[days]``: The amount of days of messages to cleanup on tempban.
-* ``[reason]``: The reason for the tempban (optional).
+    - ``<member>``: The member to temporarily ban. |member-input-quotes|
+    - ``[duration]``: The amount of time the user should be banned for.
+    - ``[days]``: The amount of days of messages to cleanup on tempban.
+    - ``[reason]``: The reason for the tempban (optional).
 
 **Example Usage**
-
-* ``[p]tempban @Twentysix Because I say so``
+    - ``[p]tempban @Twentysix Because I say so``
     This will ban Twentysix for the default amount of time set by an administrator.
-* ``[p]tempban @Twentysix 15m You need a timeout``
+    - ``[p]tempban @Twentysix 15m You need a timeout``
     This will ban Twentysix for 15 minutes.
-* ``[p]tempban 428675506947227648 1d2h15m 5 Evil person``
+    - ``[p]tempban 428675506947227648 1d2h15m 5 Evil person``
     This will ban the user for 1 day 2 hours 15 minutes and will delete the last 5 days of their messages.
 
 .. _mod-command-unban:
@@ -663,9 +639,8 @@ unban
 Unban a user from this server.
 
 **Arguments**
-
-* ``<user_id>``: |user-input|
-* ``[reason]``: The reason for the unban (optional).
+    - ``<user_id>``: |user-input|
+    - ``[reason]``: The reason for the unban (optional).
 
 .. _mod-command-userinfo:
 
@@ -690,8 +665,7 @@ If the user has no roles, previous names or previous nicknames,
 these fields will be omitted.
 
 **Arguments**
-
-* ``[member]``: |member-input|
+    - ``[member]``: |member-input|
 
 .. _mod-command-voiceban:
 
@@ -712,9 +686,8 @@ voiceban
 Ban a user from speaking and listening in the server's voice channels.
 
 **Arguments**
-
-* ``<member>``: The member to ban from voice. |member-input|
-* ``[reason]``: The reason for the voiceban (optional).
+    - ``<member>``: The member to ban from voice. |member-input|
+    - ``[reason]``: The reason for the voiceban (optional).
 
 .. _mod-command-voicekick:
 
@@ -735,9 +708,8 @@ voicekick
 Kick a member from a voice channel.
 
 **Arguments**
-
-* ``<member>``: |member-input|
-* ``[reason]``: The reason for the voicekick (optional).
+    - ``<member>``: |member-input|
+    - ``[reason]``: The reason for the voicekick (optional).
 
 .. _mod-command-voiceunban:
 
@@ -758,6 +730,5 @@ voiceunban
 Unban a user from speaking and listening in the server's voice channels.
 
 **Arguments**
-
-* ``<member>``: The member to unban from voice. |member-input-quotes|
-* ``[reason]``: The reason for the voiceunban (optional).
+    - ``<member>``: The member to unban from voice. |member-input-quotes|
+    - ``[reason]``: The reason for the voiceunban (optional).
