@@ -28,6 +28,9 @@ class Slowmode(MixinMeta):
 
         Interval can be anything from 0 seconds to 6 hours.
         Use without parameters to disable.
+
+        **Arguments**
+            - ``[interval=0:00:00]``: The time for the channel's slowmode settings.
         """
         seconds = interval.total_seconds()
         await ctx.channel.edit(slowmode_delay=seconds)
