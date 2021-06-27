@@ -47,8 +47,6 @@ ban
 
 Ban a user from this server and optionally delete days of messages.
 
-``days`` is the amount of days of messages to cleanup on ban.
-
 **Arguments**
     - ``<user>``: The user to ban. |user-input|
     - ``[days]``: The amount of days of messages to cleanup on ban. This parameter defaults to the defaultdays setting, or no days if this has not yet been configured.
