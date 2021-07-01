@@ -187,7 +187,7 @@ class CoreLogic:
                         error_message = _(
                             "Command {command_name} is already an existing command"
                             " or alias in one of the loaded cogs."
-                        ).format(command_name=inline(e.name))
+                        ).format(command_name=inline(e.qualified_name))
                     failed_with_reason_packages.append((name, error_message))
                     continue
 
