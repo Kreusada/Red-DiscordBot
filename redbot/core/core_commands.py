@@ -182,7 +182,7 @@ class CoreLogic:
                         error_message = _(
                             "Alias {alias_name} is already an existing command"
                             " or alias in one of the loaded cogs."
-                        ).format(alias_name=inline(e.name))
+                        ).format(alias_name=inline(e.qualified_name))
                     else:
                         error_message = _(
                             "Command {command_name} is already an existing command"
