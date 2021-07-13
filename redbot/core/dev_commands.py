@@ -207,8 +207,11 @@ class Dev(commands.Cog):
             await ctx.tick()
 
         if result is not None:
-            self._last_result = result
-            msg = "{}{}".format(printed, result)
+            try:
+                self._last_result = result
+                msg = "{}{}".format(printed, result)
+            except:
+                msg = "{}{}".format(stdout.getvalue(), traceback.format_exc())
         else:
             msg = printed
         msg = self.sanitize_output(ctx, msg)
@@ -295,8 +298,11 @@ class Dev(commands.Cog):
             else:
                 value = stdout.getvalue()
                 if result is not None:
-                    msg = "{}{}".format(value, result)
-                    env["_"] = result
+                    try:
+                        msg = "{}{}".format(value, result)
+                        env["_"] = result
+                    except:
+                        msg = "{}{}".format(value, traceback.format_exc())
                 elif value:
                     msg = "{}".format(value)
 
