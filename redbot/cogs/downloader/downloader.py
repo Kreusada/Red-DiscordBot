@@ -1,4 +1,4 @@
-import asyncio#
+import asyncio
 import contextlib
 import os
 import re
@@ -607,6 +607,30 @@ class Downloader(commands.Cog):
             )
             + humanize_list([inline(i.name) for i in set(repos)])
         )
+
+    @repo.command(name="rename")
+    async def _repo_rename(self, ctx: commands.Context, repo: Repo, new_repo_name: str) -> None:
+        """
+        Rename a repository.
+
+        Examples:
+            - `[p]repo rename 26-Cogs 26`
+            - `[p]repo rename Laggrons-Dumb-Cogs laggron`
+
+        **Arguments**
+
+        - `<repo>` The repo to rename.
+        - `<new_repo_name>` The new name for the repo.
+        """
+        if re.match(r"^[a-zA-Z0-9_\-]*$", new_repo_name) is None:
+            await ctx.send(
+                _("Repo names can only contain characters A-z, numbers, underscores, and hyphens.")
+            )
+            return
+
+        await self._repo_manager.rename_repo(name=repo.name, new_name=new_repo_name)
+
+        await ctx.send("Successfully renamed `{existing_repo}` to `{new_repo_name}`.")
 
     @repo.command(name="list")
     async def _repo_list(self, ctx: commands.Context) -> None:

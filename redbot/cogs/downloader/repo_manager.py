@@ -1125,7 +1125,7 @@ class RepoManager:
 
         Raises
         ------
-        .MissingGitRepo
+        MissingGitRepo
             If the repo does not exist.
 
         """
@@ -1140,6 +1140,35 @@ class RepoManager:
             del self._repos[name]
         except KeyError:
             pass
+
+    async def rename_repo(self, name: str, new_name: str) -> None:
+        """Rename a repository.
+
+        Parameters
+        ----------
+        name : str
+            The name of the repository to rename.
+        new_name : str
+            The new name for the repository.
+
+        Returns
+        -------
+        Repo
+            The original repo's object.
+
+        """
+        if self.does_repo_exist(name):
+            raise errors.ExistingGitRepo(
+                "That repo name you provided for the rename already exists. Please choose another."
+            )
+
+        repo_obj = await self.config.repos.get_raw(name)
+        await self.config.repos.clear_raw(name)
+        await self.config.repos.set_raw(new_name, value=repo_obj)
+
+        self._repos[new_name] = repo_obj
+
+        return repo_obj
 
     async def update_repo(self, repo_name: str) -> Tuple[Repo, Tuple[str, str]]:
         """Update repo with provided name.
