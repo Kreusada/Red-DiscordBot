@@ -1158,16 +1158,15 @@ class RepoManager:
 
         """
         if self.does_repo_exist(new_name):
-            raise errors.ExistingGitRepo(
+            raise errors.RepoRenamingError(
                 "That repo name you provided for the rename already exists. Please choose another."
             )
 
-        repo_obj = self._repos[name]
+        repo_obj = self.get_repo(name)
         repo_obj.name = new_name
 
-        async with self.config.repos() as repos:
-            repos[new_name] = repos.pop(name)
-
+        await self.config.repos.clear_raw(name)
+        await self.config.repos.set_raw(new_name, value=repo_obj.branch)
         self._repos[new_name] = self._repos.pop(name)
 
         return repo_obj

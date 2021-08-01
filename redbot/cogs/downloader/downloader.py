@@ -631,7 +631,7 @@ class Downloader(commands.Cog):
 
         try:
             await self._repo_manager.rename_repo(name=repo_name, new_name=new_repo_name)
-        except errors.ExistingGitRepo as err:
+        except errors.RepoRenamingError as err:
             return await ctx.send(err)
 
         await ctx.send(_("Successfully renamed `{existing_repo}` to `{new_repo_name}`.").format(

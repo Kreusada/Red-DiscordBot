@@ -22,6 +22,7 @@ __all__ = [
     "UnknownRevision",
     "AmbiguousRevision",
     "PipError",
+    "RepoRenamingError",
 ]
 
 
@@ -150,6 +151,14 @@ class AmbiguousRevision(GitException):
 class PipError(DownloaderException):
     """
     Thrown when pip returns a non-zero return code.
+    """
+
+    pass
+
+
+class RepoRenamingError(DownloaderException):
+    """
+    Thrown when a repo failed to be renamed.
     """
 
     pass
