@@ -622,15 +622,21 @@ class Downloader(commands.Cog):
         - `<repo>` The repo to rename.
         - `<new_repo_name>` The new name for the repo.
         """
+        repo_name = repo.name
         if re.match(r"^[a-zA-Z0-9_\-]*$", new_repo_name) is None:
             await ctx.send(
                 _("Repo names can only contain characters A-z, numbers, underscores, and hyphens.")
             )
             return
 
-        await self._repo_manager.rename_repo(name=repo.name, new_name=new_repo_name)
+        try:
+            await self._repo_manager.rename_repo(name=repo_name, new_name=new_repo_name)
+        except errors.ExistingGitRepo as err:
+            return await ctx.send(err)
 
-        await ctx.send("Successfully renamed `{existing_repo}` to `{new_repo_name}`.")
+        await ctx.send(_("Successfully renamed `{existing_repo}` to `{new_repo_name}`.").format(
+            existing_repo=repo_name, new_repo_name=new_repo_name)
+        )
 
     @repo.command(name="list")
     async def _repo_list(self, ctx: commands.Context) -> None:
