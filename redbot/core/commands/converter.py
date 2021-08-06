@@ -407,7 +407,7 @@ if not TYPE_CHECKING:
         async def convert(self, ctx, arg):
             if arg in self.valid_names:
                 return arg
-            raise BadArgument(_("Expected one of: {}").format(humanize_list(self.valid_names)))
+            raise BadArgument(_("Expected one of: {}").format(humanize_list(self.valid_names, style="or")))
 
         def __class_getitem__(cls, k):
             if not k:
