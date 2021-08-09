@@ -407,8 +407,8 @@ if not TYPE_CHECKING:
         async def convert(self, ctx, arg):
             if arg in self.valid_names:
                 return arg
-            quoted_args = [f"\"{name}\"" for name in self.valid_names]
-            raise BadArgument(_("Expected {}").format(humanize_list(quoted_args, style="or")))
+            quoted_args = [f"'{name}'" for name in self.valid_names]
+            raise BadArgument(_("Expected {}.").format(humanize_list(quoted_args, style="or")))
 
         def __class_getitem__(cls, k):
             if not k:
