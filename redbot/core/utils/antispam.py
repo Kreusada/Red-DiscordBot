@@ -46,7 +46,7 @@ class AntiSpam:
     def spammy(self):
         """
         Used to check if any intervals are active. Intervals are marked
-        from the :func:`AntiSpam.stamp` function.
+        from the stamp function.
 
         This function takes no arguments.
 
