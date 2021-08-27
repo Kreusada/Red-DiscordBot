@@ -9,7 +9,7 @@ AntiSpamInterval = namedtuple("AntiSpamInterval", ["period", "frequency"])
 class AntiSpam:
     """
     Custom class which is more flexible than using discord.py's
-    cooldown.
+    :func:`discord.ext.commands.cooldown`.
 
     Can be intialized with a custom set of intervals
     These should be provided as a list of tuples in the form
