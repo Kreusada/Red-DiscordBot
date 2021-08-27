@@ -60,10 +60,10 @@ class AntiSpam:
     def stamp(self):
         """
         Used to mark an event that counts against the intervals.
-        
-        It will increment the interval's quantity, and will escalate to 
+
+        It will increment the interval's quantity, and will escalate to
         the next interval if that quantity is exceeded.
-        
+
         This function takes no arguments.
         """
         self.__event_timestamps.append(datetime.utcnow())
