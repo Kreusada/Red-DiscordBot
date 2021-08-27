@@ -21,6 +21,11 @@ General Utility
     .. automethod:: filter
         :async-for:
 
+AntiSpam
+===============
+
+.. automodule:: redbot.core.utils.antispam.AntiSpam
+    :members:
 
 Chat Formatting
 ===============
