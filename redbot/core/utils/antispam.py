@@ -45,14 +45,26 @@ class AntiSpam:
     @property
     def spammy(self):
         """
-        use this to check if any interval criteria are met
+        Used to check if any intervals are active. Intervals are marked
+        from the :func:`AntiSpam.stamp` function.
+
+        This function takes no arguments.
+
+        Returns
+        -------
+        bool
+            Whether an antispam interval has been met.
         """
         return any(self.__interval_check(x) for x in self.__intervals)
 
     def stamp(self):
         """
-        Use this to mark an event that counts against the intervals
-        as happening now
+        Used to mark an event that counts against the intervals.
+        
+        It will increment the interval's quantity, and will escalate to 
+        the next interval if that quantity is exceeded.
+        
+        This function takes no arguments.
         """
         self.__event_timestamps.append(datetime.utcnow())
         self.__event_timestamps = [
