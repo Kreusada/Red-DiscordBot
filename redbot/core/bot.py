@@ -1480,7 +1480,7 @@ class Red(
             raise errors.PackageAlreadyLoaded(spec)
         loader = spec.loader
         lib = types.ModuleType(loader.name)
-        spec.loader.exec_module(mod)
+        spec.loader.exec_module(lib)
         if not hasattr(lib, "setup"):
             del lib
             raise discord.ClientException(f"extension {name} does not have a setup function")
