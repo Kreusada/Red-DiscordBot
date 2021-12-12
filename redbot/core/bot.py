@@ -8,6 +8,7 @@ import sys
 import contextlib
 import weakref
 import functools
+import types
 from collections import namedtuple
 from datetime import datetime
 from enum import IntEnum
@@ -1477,8 +1478,9 @@ class Red(
         name = spec.name.split(".")[-1]
         if name in self.extensions:
             raise errors.PackageAlreadyLoaded(spec)
-
-        lib = spec.loader.load_module()
+        loader = spec.loader
+        lib = types.ModuleType(loader.name)
+        spec.loader.exec_module(mod)
         if not hasattr(lib, "setup"):
             del lib
             raise discord.ClientException(f"extension {name} does not have a setup function")
