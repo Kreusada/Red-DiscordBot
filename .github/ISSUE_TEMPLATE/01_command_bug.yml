@@ -23,7 +23,6 @@ body:
       - Admin
       - Alias
       - Audio
-      - Bank
       - Cleanup
       - CogManagerUI
       - Core
