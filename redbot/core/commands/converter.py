@@ -53,6 +53,7 @@ _ = Translator("commands.converter", __file__)
 
 ID_REGEX = re.compile(r"([0-9]{15,20})")
 USER_MENTION_REGEX = re.compile(r"<@!?([0-9]{15,21})>$")
+START_CODE_BLOCK_RE = re.compile(r"^((```py(thon)?)(?=\s)|(```))")
 
 
 # Taken with permission from
@@ -539,3 +540,19 @@ else:
             if not cog:
                 raise BadArgument(_('Cog "{arg}" not found.').format(arg=arg))
             return cog
+
+class CodeBlockConverter(dpy_commands.Converter):
+    """Converts a string with removed code blocks."""
+    
+    @staticmethod
+    def cleanup_code(content: str) -> str:
+        """Automatically removes code blocks from the code."""
+        # remove ```py\n```
+        if content.startswith("```") and content.endswith("```"):
+            return START_CODE_BLOCK_RE.sub("", content)[:-3]
+
+        # remove `foo`
+        return content.strip("` \n")
+    
+    async def convert(self, ctx: "Context", argument: str) -> str:
+        return self.cleanup_code(argument)
