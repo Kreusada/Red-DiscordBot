@@ -3962,7 +3962,7 @@ class Core(commands.commands._RuleDropper, commands.Cog, CoreLogic):
         prefixes = await ctx.bot.get_valid_prefixes()
         prefix = re.sub(rf"<@!?{ctx.me.id}>", f"@{ctx.me.name}".replace("\\", r"\\"), prefixes[0])
 
-        content = _("You can reply to this user with {}dm {} <text>").format(prefix, author.id)
+        content = _("Use `{}dm {} <text>` to reply to this user").format(prefix, author.id)
 
         description = _("Sent by {} {}").format(author, source)
 
