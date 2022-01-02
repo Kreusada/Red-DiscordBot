@@ -547,12 +547,9 @@ class CodeBlockConverter(dpy_commands.Converter):
     @staticmethod
     def cleanup_code(content: str) -> str:
         """Automatically removes code blocks from the code."""
-        # remove ```py\n```
         if content.startswith("```") and content.endswith("```"):
             return START_CODE_BLOCK_RE.sub("", content)[:-3]
-
-        # remove `foo`
         return content.strip("` \n")
-    
+
     async def convert(self, ctx: "Context", argument: str) -> str:
         return self.cleanup_code(argument)
