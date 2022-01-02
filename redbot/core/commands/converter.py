@@ -53,7 +53,7 @@ _ = Translator("commands.converter", __file__)
 
 ID_REGEX = re.compile(r"([0-9]{15,20})")
 USER_MENTION_REGEX = re.compile(r"<@!?([0-9]{15,21})>$")
-START_CODE_BLOCK_RE = re.compile(r"^((```py(thon)?)(?=\s)|(```))")
+START_CODE_BLOCK_RE = re.compile(r"^((```.*?)(?=\s)|(```))")
 
 
 # Taken with permission from
