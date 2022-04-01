@@ -5,6 +5,8 @@ from collections import namedtuple
 Interval = Tuple[timedelta, int]
 AntiSpamInterval = namedtuple("AntiSpamInterval", ["period", "frequency"])
 
+__all__ = ["AntiSpam"]
+
 
 class AntiSpam:
     """
