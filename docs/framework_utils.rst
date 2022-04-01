@@ -73,3 +73,9 @@ Common Filters
 
 .. automodule:: redbot.core.utils.common_filters
     :members:
+
+Safety
+======
+
+.. automodule:: redbot.core.utils.safety
+    :members:
