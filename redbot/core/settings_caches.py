@@ -14,7 +14,7 @@ from .utils import AsyncIter
 __all__ = [
     "DisabledCogCache",
     "I18nManager",
-    "IgnoreManager"
+    "IgnoreManager",
     "PrefixManager",
     "WhitelistBlacklistManager",
 ]
