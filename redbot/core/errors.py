@@ -21,6 +21,7 @@ __all__ = [
     "StoredTypeError",
 ]
 
+
 class RedError(Exception):
     """Base error class for Red-related errors."""
 

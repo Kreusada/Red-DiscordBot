@@ -18,6 +18,7 @@ __all__ = [
     "ReactionPredicate",
 ]
 
+
 class MessagePredicate(Callable[[discord.Message], bool]):
     """A simple collection of predicates for message events.
 
