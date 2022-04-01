@@ -14,6 +14,16 @@ from .predicates import ReactionPredicate
 _ReactableEmoji = Union[str, discord.Emoji]
 
 
+__all__ = [
+    "close_menu",
+    "DEFAULT_CONTROLS",
+    "menu",
+    "next_page",
+    "prev_page",
+    "start_adding_reactions",
+]
+
+
 async def menu(
     ctx: commands.Context,
     pages: Union[List[str], List[discord.Embed]],

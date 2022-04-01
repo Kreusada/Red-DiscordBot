@@ -34,6 +34,8 @@ _ = Translator("Dev", __file__)
 
 START_CODE_BLOCK_RE = re.compile(r"^((```py(thon)?)(?=\s)|(```))")
 
+__all__ = ["Dev"]
+
 
 @cog_i18n(_)
 class Dev(commands.Cog):

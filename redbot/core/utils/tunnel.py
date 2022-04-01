@@ -10,6 +10,9 @@ from .common_filters import filter_mass_mentions
 _instances = weakref.WeakValueDictionary({})
 
 
+__all__ = ["Tunnel"]
+
+
 class TunnelMeta(type):
     """
     lets prevent having multiple tunnels with the same

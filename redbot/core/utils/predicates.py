@@ -13,6 +13,11 @@ _CHAN_MENTION_RE = re.compile(r"<#([0-9]{15,20})>$")
 _ROLE_MENTION_RE = re.compile(r"<@&([0-9]{15,20})>$")
 
 
+__all__ = [
+    "MessagePredicate",
+    "ReactionPredicate",
+]
+
 class MessagePredicate(Callable[[discord.Message], bool]):
     """A simple collection of predicates for message events.
 

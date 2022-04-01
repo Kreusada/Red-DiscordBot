@@ -17,7 +17,7 @@ from .data_manager import cog_data_path
 
 from .utils.chat_formatting import box, pagify
 
-__all__ = ["CogManager"]
+__all__ = ["CogManager", "NoSuchCog"]
 
 
 class NoSuchCog(ImportError):

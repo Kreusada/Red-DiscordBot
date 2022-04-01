@@ -12,6 +12,30 @@ from redbot.core.i18n import Translator, get_babel_locale, get_babel_regional_fo
 
 _ = Translator("UtilsChatFormatting", __file__)
 
+__all__ = [
+    "bold",
+    "bordered",
+    "box",
+    "error",
+    "escape",
+    "format_perms_list",
+    "humanize_list",
+    "humanize_number",
+    "humanize_timedelta",
+    "info",
+    "inline",
+    "italics",
+    "pagify",
+    "question",
+    "quote",
+    "spoiler",
+    "strikethrough",
+    "success",
+    "text_to_file",
+    "underline",
+    "warning",
+]
+
 
 def error(text: str) -> str:
     """Get text prefixed with an error emoji.
