@@ -1,9 +1,8 @@
 """Module for Trivia cog."""
 import asyncio
-import math
 import pathlib
 from collections import Counter
-from typing import Any, Dict, List, Literal, Union
+from typing import Any, Dict, List, Literal
 from schema import Schema, Optional, Or, SchemaError
 
 import io
@@ -11,10 +10,9 @@ import yaml
 import discord
 
 from redbot.core import Config, commands, checks, bank
-from redbot.core.bot import Red
 from redbot.core.data_manager import cog_data_path
 from redbot.core.i18n import Translator, cog_i18n
-from redbot.core.utils import AsyncIter, can_user_react_in
+from redbot.core.utils import AsyncIter
 from redbot.core.utils.chat_formatting import box, pagify, bold
 from redbot.core.utils.menus import start_adding_reactions
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
@@ -30,6 +28,7 @@ UNIQUE_ID = 0xB3C0E453
 TRIVIA_LIST_SCHEMA = Schema(
     {
         Optional("AUTHOR"): str,
+        Optional("DESCRIPTION"): str,
         Optional("CONFIG"): {
             Optional("max_score"): int,
             Optional("timeout"): Or(int, float),
@@ -55,9 +54,8 @@ class InvalidListError(Exception):
 class Trivia(commands.Cog):
     """Play trivia with friends!"""
 
-    def __init__(self, bot: Red) -> None:
+    def __init__(self):
         super().__init__()
-        self.bot = bot
         self.trivia_sessions = []
         self.config = Config.get_conf(self, identifier=UNIQUE_ID, force_registration=True)
 
@@ -382,6 +380,54 @@ class Trivia(commands.Cog):
         session.force_stop()
         await ctx.send(_("Trivia stopped."))
 
+    @trivia.command(name="info")
+    async def trivia_info(self, ctx: commands.Context, category: str):
+        """Get information about a trivia list."""
+        try:
+            trivia_list_data = self.get_trivia_list(category)
+        except FileNotFoundError:
+            await ctx.send(
+                _(
+                    "Invalid category `{name}`. See `{prefix}trivia list` for a list of "
+                    "trivia categories."
+                ).format(name=category, prefix=ctx.clean_prefix)
+            )
+            return
+        except InvalidListError:
+            await ctx.send(
+                _(
+                    "There was an error parsing the trivia list for the `{name}` category. It "
+                    "may be formatted incorrectly."
+                ).format(name=category)
+            )
+            return
+        if not trivia_list_data:
+            await ctx.send(
+                _("The trivia list was parsed successfully, however it appears to be empty!")
+            )
+            return
+        
+        author = trivia_list_data.pop("AUTHOR", None)
+        config = trivia_list_data.pop("CONFIG", None)
+        description = trivia_list_data.pop("DESCRIPTION", _("No description was provided for this trivia list."))
+
+        msg = _(
+            "Settings for the '{category}' trivia list\n"
+            "Authors: {author}\n"
+            "Description: {description}\n"
+            "Number of questions: {question_count}\n"
+        ).format(
+            category=category,
+            author=author,
+            description=description,
+            question_count=len(trivia_list_data),
+        )
+
+        if config:
+            msg += _("Config:\n{config_display}").format(config_display="\n".join(f"\t{k}: {v}" for k, v in config.items()))
+
+        await ctx.send(box(msg, lang="yaml"))
+
     @trivia.command(name="list")
     async def trivia_list(self, ctx: commands.Context):
         """List available trivia categories."""
@@ -674,7 +720,7 @@ class Trivia(commands.Cog):
                 filename=filename
             )
 
-            can_react = can_user_react_in(ctx.me, ctx.channel)
+            can_react = ctx.channel.permissions_for(ctx.me).add_reactions
             if not can_react:
                 overwrite_message += " (yes/no)"
 
@@ -708,9 +754,7 @@ class Trivia(commands.Cog):
             fp.write(buffer.read())
         await ctx.send(_("Saved Trivia list as {filename}.").format(filename=filename))
 
-    def _get_trivia_session(
-        self, channel: Union[discord.TextChannel, discord.Thread]
-    ) -> TriviaSession:
+    def _get_trivia_session(self, channel: discord.TextChannel) -> TriviaSession:
         return next(
             (session for session in self.trivia_sessions if session.ctx.channel == channel), None
         )
