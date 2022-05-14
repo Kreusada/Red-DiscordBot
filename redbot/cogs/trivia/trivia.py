@@ -403,8 +403,49 @@ class Trivia(commands.Cog):
                 await ctx.send(msg)
 
     @trivia.command(name="info")
-    async def trivia_info(self, ctx: commands.Context):
+    async def trivia_info(self, ctx: commands.Context, category: str):
         """Get information about a trivia category."""
+        try:
+            data = self.get_trivia_list(category)
+        except FileNotFoundError:
+            await ctx.send(
+                _(
+                    "Invalid category `{name}`. See `{prefix}trivia list` for a list of "
+                    "trivia categories."
+                ).format(name=category, prefix=ctx.clean_prefix)
+            )
+            return
+        except InvalidListError:
+            await ctx.send(
+                _(
+                    "There was an error parsing the trivia list for the `{name}` category. It "
+                    "may be formatted incorrectly."
+                ).format(name=category)
+            )
+            return
+
+        author = data.pop("AUTHOR", _("No authors were provided."))
+        description = data.pop("DESCRIPTION", _("No description was provided."))
+        config = data.pop("CONFIG", None)
+
+        message = _(
+            "Settings for the {category!r} trivia list\n"
+            "Author: {author}\n"
+            "Description: {description}\n"
+            "Number of questions: {number_of_questions}\n"
+        ).format(
+            category=category,
+            author=author,
+            description=description,
+            number_of_questions=len(data),
+        )
+
+        if config:
+            message += _("Config:\n") + "\n".join(
+                f"\t{k.replace('_', ' ').capitalize()}: {v}" for k, v in config.items()
+            )
+
+        await ctx.send(box(message, lang="yaml"))
 
     @trivia.group(
         name="leaderboard", aliases=["lboard"], autohelp=False, invoke_without_command=True
