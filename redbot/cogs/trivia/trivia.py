@@ -442,7 +442,7 @@ class Trivia(commands.Cog):
 
         if config:
             message += _("Config:\n") + "\n".join(
-                f"\t{k.replace('_', ' ').capitalize()}: {v}" for k, v in config.items()
+                f"\t{k}: {v}" for k, v in config.items()
             )
 
         await ctx.send(box(message, lang="yaml"))
