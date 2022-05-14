@@ -30,6 +30,7 @@ UNIQUE_ID = 0xB3C0E453
 TRIVIA_LIST_SCHEMA = Schema(
     {
         Optional("AUTHOR"): str,
+        Optional("DESCRIPTION"): str,
         Optional("CONFIG"): {
             Optional("max_score"): int,
             Optional("timeout"): Or(int, float),
@@ -400,6 +401,10 @@ class Trivia(commands.Cog):
                 await ctx.author.send(msg)
             else:
                 await ctx.send(msg)
+
+    @trivia.command(name="info")
+    async def trivia_info(self, ctx: commands.Context):
+        """Get information about a trivia category."""
 
     @trivia.group(
         name="leaderboard", aliases=["lboard"], autohelp=False, invoke_without_command=True
