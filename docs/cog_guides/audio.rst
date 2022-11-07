@@ -249,6 +249,7 @@ The following formats are supported:
 
 * MP3
 * FLAC
+* WAV
 * Matroska/WebM (AAC, Opus or Vorbis codecs)
 * MP4/M4A (AAC codec)
 * OGG streams (Opus, Vorbis and FLAC codecs)
